@@ -435,17 +435,15 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .services-head p { font-size: var(--fs-sub); letter-spacing: var(--track-sub); color: var(--graphite); line-height: 1.4; max-width: 44ch; padding-bottom: 4px; }
 @media (max-width: 800px) { .services-head { grid-template-columns: 1fr; gap: var(--sp-24); } }
 .services-list { border-top: 1px solid var(--fog); }
-.service { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: var(--sp-24); align-items: baseline; padding-block: var(--sp-32); border-bottom: 1px solid var(--fog); position: relative; transition: padding-left .4s cubic-bezier(.3,.8,.3,1); }
+.service { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--sp-24); align-items: baseline; padding-block: var(--sp-32); border-bottom: 1px solid var(--fog); position: relative; transition: padding-left .4s cubic-bezier(.3,.8,.3,1); }
 .service::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--sky); transform: scaleY(0); transform-origin: bottom; transition: transform .45s cubic-bezier(.3,.8,.3,1); }
 .service:hover { padding-left: var(--sp-24); }
 .service:hover::before { transform: scaleY(1); }
 .service-num { font-family: var(--font-serif); font-size: var(--fs-body); color: var(--graphite); letter-spacing: var(--track-body); font-variant-numeric: tabular-nums; transition: color .3s ease; }
 .service:hover .service-num { color: var(--ink); }
 .service-title { font-family: var(--font-serif); font-size: var(--fs-h); font-weight: 400; letter-spacing: var(--track-h); line-height: 1.2; color: var(--ink); }
-.service-price { font-size: var(--fs-sm); letter-spacing: var(--track-sm); font-weight: 500; color: var(--graphite); white-space: nowrap; font-variant-numeric: tabular-nums; transition: color .3s ease; }
-.service:hover .service-price { color: var(--ink); }
 .service-desc { grid-column: 2 / -1; margin-top: var(--sp-8); font-size: var(--fs-body); letter-spacing: var(--track-body); line-height: 1.5; color: var(--graphite); max-width: 62ch; }
-@media (max-width: 640px) { .service { grid-template-columns: 40px minmax(0,1fr); gap: var(--sp-8) var(--sp-16); } .service-num { grid-column: 1; grid-row: 1; } .service-title { grid-column: 2; } .service-price { grid-column: 2; grid-row: 3; margin-top: 4px; color: var(--graphite); } .service-desc { grid-column: 2; grid-row: 4; } }
+@media (max-width: 640px) { .service { grid-template-columns: 40px minmax(0,1fr); gap: var(--sp-8) var(--sp-16); } .service-num { grid-column: 1; grid-row: 1; } .service-title { grid-column: 2; } .service-desc { grid-column: 2; grid-row: 3; } }
 
 .methods-carousel { position: relative; }
 .methods-viewport { overflow: hidden; border-radius: var(--r-img); background: var(--paper); border: 1px solid var(--fog); cursor: grab; user-select: none; touch-action: pan-y; }
@@ -581,7 +579,6 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .footer-contact::before { content: ""; width: 5px; height: 5px; background: var(--sky); border-radius: 50%; flex-shrink: 0; margin-top: 9px; }
 .footer-contact .lbl { display: block; font-size: var(--fs-caption); letter-spacing: var(--track-caption); text-transform: uppercase; color: var(--graphite); margin-bottom: 2px; }
 
-/* ── Как добраться ── */
 .footer-directions {
   margin-top: var(--sp-24);
   padding-top: var(--sp-24);
@@ -777,42 +774,36 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
       <a href="#appointment" class="service reveal">
         <span class="service-num">01</span>
         <span class="service-title">Простатит и аденома</span>
-        <span class="service-price">от 3 500 ₽</span>
         <span class="service-desc">Диагностика и комплексное лечение воспалительных и гиперпластических заболеваний предстательной железы.</span>
       </a>
 
       <a href="#appointment" class="service reveal">
         <span class="service-num">02</span>
         <span class="service-title">Мочекаменная болезнь</span>
-        <span class="service-price">от 4 000 ₽</span>
         <span class="service-desc">УЗИ почек, определение состава камней, консервативное и оперативное лечение, профилактика рецидивов.</span>
       </a>
 
       <a href="#appointment" class="service reveal">
         <span class="service-num">03</span>
         <span class="service-title">Андрология</span>
-        <span class="service-price">от 3 800 ₽</span>
         <span class="service-desc">Нарушения эректильной функции, бесплодие, гормональный дисбаланс, мужское здоровье после 40 лет.</span>
       </a>
 
       <a href="#appointment" class="service reveal">
         <span class="service-num">04</span>
         <span class="service-title">Уродинамика и диагностика</span>
-        <span class="service-price">от 2 900 ₽</span>
         <span class="service-desc">Комплексное уродинамическое исследование, урофлоуметрия, УЗИ мочевого пузыря и почек на месте.</span>
       </a>
 
       <a href="#appointment" class="service reveal">
         <span class="service-num">05</span>
         <span class="service-title">Онкоурология</span>
-        <span class="service-price">от 5 000 ₽</span>
         <span class="service-desc">Ранняя диагностика опухолей предстательной железы, почек и мочевого пузыря. Наблюдение после лечения.</span>
       </a>
 
       <a href="#appointment" class="service reveal">
         <span class="service-num">06</span>
         <span class="service-title">Инфекции мочевыводящих путей</span>
-        <span class="service-price">от 3 200 ₽</span>
         <span class="service-desc">Лечение цистита, пиелонефрита, уретрита. Подбор антибактериальной терапии с учётом чувствительности.</span>
       </a>
     </div>
@@ -1268,7 +1259,6 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
           </div>
         </div>
 
-        <!-- ── Как добраться ── -->
         <div class="footer-directions">
           <h5>Как добраться</h5>
           <ul>
