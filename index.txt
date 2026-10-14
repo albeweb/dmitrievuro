@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Дмитриев Владимир Валерьевич — врач-уролог</title>
+<meta name="description" content="Врач-уролог Дмитриев Владимир Валерьевич. Стаж более 12 лет. Диагностика и лечение простатита, аденомы, мочекаменной болезни, андрология. Запись онлайн." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+
+<style>
+/* ================================================================
+   TOKENS
+================================================================ */
+:root {
+  --parchment:    #f3f1eb;
+  --ink:          #28262a;
+  --graphite:     #4a4a4c;
+  --paper:        #ffffff;
+  --fog:          #dddcdd;
+  --silver:       #cbcbcb;
+  --sky:          #97cde5;
+  --sage:         #c8dfaa;
+
+  --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+
+  /* Type scale — Alden Major Second 1.125 */
+  --fs-caption: 0.75rem;
+  --fs-sm:      0.875rem;
+  --fs-body:    1rem;
+  --fs-sub:     1.125rem;
+  --fs-h-sm:    1.5rem;
+  --fs-h:       2rem;
+  --fs-h-lg:    3rem;
+  --fs-display: 3.5rem;
+
+  --track-caption: 0.02em;
+  --track-sm:    -0.28px;
+  --track-body:  -0.32px;
+  --track-sub:   -0.36px;
+  --track-h-sm:  -0.48px;
+  --track-h:     -0.64px;
+  --track-h-lg:  -1.44px;
+  --track-display: -2.24px;
+
+  --sp-8:  8px;
+  --sp-16: 16px;
+  --sp-24: 24px;
+  --sp-32: 32px;
+  --sp-40: 40px;
+  --sp-48: 48px;
+  --sp-64: 64px;
+  --sp-80: 80px;
+  --sp-112: 112px;
+
+  --max-w: 1200px;
+  --edge: clamp(20px, 4vw, 64px);
+
+  --r-card:  16px;
+  --r-badge: 30px;
+  --r-img:   24px;
+  --r-btn:   100px;
+  --r-sm:    4px;
+}
+
+/* ================================================================
+   RESET
+================================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+@media (max-width: 480px) { html { font-size: 15px; } }
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  letter-spacing: var(--track-body);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+ul { list-style: none; }
+
+::selection { background: var(--sky); color: var(--ink); }
+
+/* ================================================================
+   LAYOUT
+================================================================ */
+.wrap {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding-inline: var(--edge);
+}
+
+.band {
+  background: var(--parchment);
+}
+
+.section {
+  padding-block: clamp(56px, 7vw, var(--sp-112));
+  scroll-margin-top: 80px;
+}
+
+/* ================================================================
+   TYPOGRAPHY
+================================================================ */
+h1, h2, h3, h4 {
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5.5vw, var(--fs-display));
+  letter-spacing: var(--track-display);
+  line-height: 1;
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, var(--fs-h-lg));
+  letter-spacing: var(--track-h-lg);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: var(--fs-h-sm);
+  letter-spacing: var(--track-h-sm);
+  font-weight: 500;
+}
+
+.hl { color: var(--sky); }
+
+.lead {
+  font-size: var(--fs-sub);
+  line-height: 1.4;
+  letter-spacing: var(--track-sub);
+  color: var(--graphite);
+  max-width: 52ch;
+}
+
+.caption {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+/* ================================================================
+   NAV
+================================================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--paper);
+  padding-block: var(--sp-16);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-24);
+}
+
+.nav-brand {
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: var(--track-sub);
+  color: var(--ink);
+  line-height: 1.1;
+}
+.nav-brand span {
+  display: block;
+  font-size: var(--fs-caption);
+  font-weight: 400;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--graphite);
+  margin-top: 3px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-32);
+}
+.nav-links a {
+  font-size: var(--fs-sm);
+  letter-spacing: var(--track-sm);
+  color: var(--graphite);
+  transition: color .2s ease;
+}
+.nav-links a:hover { color: var(--ink); }
+
+.nav-right { display: flex; align-items: center; gap: var(--sp-24); }
+.nav-phone {
+  font-size: var(--fs-sm);
+  letter-spacing: var(--track-sm);
+  font-weight: 500;
+  color: var(--ink);
+}
+.nav-phone:hover { color: var(--graphite); }
+
+.nav-burger {
+  display: none;
+  width: 40px; height: 40px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--fog);
+  place-items: center;
+}
+.nav-burger span {
+  display: block; width: 16px; height: 1.5px;
+  background: var(--ink); position: relative;
+}
+.nav-burger span::before,
+.nav-burger span::after {
+  content: ""; position: absolute; left: 0;
+  width: 16px; height: 1.5px; background: var(--ink);
+}
+.nav-burger span::before { top: -5px; }
+.nav-burger span::after  { top:  5px; }
+
+.nav-mobile {
+  display: none;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .4s cubic-bezier(.3,.8,.3,1);
+}
+.nav-mobile.open { max-height: 400px; }
+.nav-mobile ul { padding: var(--sp-16) 0 var(--sp-24); }
+.nav-mobile li { border-bottom: 1px solid var(--fog); }
+.nav-mobile a {
+  display: block;
+  padding: var(--sp-16) 0;
+  font-size: var(--fs-sub);
+  letter-spacing: var(--track-sub);
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .nav-links, .nav-phone { display: none; }
+  .nav-burger { display: grid; }
+  .nav-mobile { display: block; }
+}
+
+/* ================================================================
+   BUTTONS
+================================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-8);
+  padding: 12px 20px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  letter-spacing: var(--track-body);
+  border-radius: var(--r-btn);
+  transition: background .25s ease, transform .2s ease;
+  white-space: nowrap;
+}
+.btn-sage {
+  background: var(--sage);
+  color: var(--ink);
+}
+.btn-sage:hover { background: #b9d496; transform: translateY(-1px); }
+
+.btn-ghost {
+  color: var(--ink);
+  padding: 12px 0;
+}
+.btn-ghost:hover { color: var(--graphite); }
+
+.btn-outline {
+  border: 1px solid var(--fog);
+  color: var(--ink);
+}
+.btn-outline:hover { border-color: var(--ink); }
+
+/* ================================================================
+   HERO
+================================================================ */
+.hero {
+  padding-top: clamp(40px, 6vw, 80px);
+  padding-bottom: clamp(48px, 7vw, 96px);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 80px);
+  align-items: start;
+}
+
+.hero-copy { max-width: 620px; }
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-8);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--graphite);
+  margin-bottom: var(--sp-32);
+}
+.hero-eyebrow::before {
+  content: "";
+  width: 20px; height: 1px;
+  background: var(--ink);
+}
+
+.hero-title {
+  margin-bottom: var(--sp-32);
+}
+
+.hero-lead {
+  margin-bottom: var(--sp-40);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-24);
+  margin-bottom: var(--sp-48);
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-32);
+  padding-top: var(--sp-32);
+  border-top: 1px solid var(--fog);
+}
+.hero-meta dt {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--graphite);
+  margin-bottom: 4px;
+}
+.hero-meta dd {
+  font-size: var(--fs-sub);
+  letter-spacing: var(--track-sub);
+  color: var(--ink);
+}
+
+.hero-figure { position: relative; }
+.hero-figure img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--r-img);
+  filter: saturate(.92) contrast(1.01);
+}
+.hero-figure figcaption {
+  margin-top: var(--sp-16);
+  padding-top: var(--sp-16);
+  border-top: 1px solid var(--fog);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--graphite);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-16);
+}
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-figure { max-width: 400px; }
+}
+
+/* ================================================================
+   APPROACH — три принципа
+================================================================ */
+.approach-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: clamp(32px, 6vw, 80px);
+  align-items: start;
+}
+
+.approach-intro h2 {
+  margin-bottom: var(--sp-24);
+  max-width: 14ch;
+}
+
+.approach-principles {
+  display: grid;
+  gap: var(--sp-40);
+}
+
+.principle {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: var(--sp-24);
+  padding-bottom: var(--sp-40);
+  border-bottom: 1px solid var(--fog);
+}
+.principle:last-child { border-bottom: none; padding-bottom: 0; }
+
+.principle-num {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h-sm);
+  color: var(--sky);
+  letter-spacing: var(--track-h-sm);
+  line-height: 1;
+}
+
+.principle h3 {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h-sm);
+  font-weight: 400;
+  letter-spacing: var(--track-h-sm);
+  margin-bottom: var(--sp-8);
+}
+
+.principle p {
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  letter-spacing: var(--track-body);
+  color: var(--graphite);
+  max-width: 60ch;
+}
+
+@media (max-width: 800px) {
+  .approach-inner { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
+   SERVICES — содержание
+================================================================ */
+.services-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--sp-48);
+  align-items: end;
+  margin-bottom: var(--sp-64);
+}
+.services-head h2 { max-width: 16ch; }
+.services-head p {
+  font-size: var(--fs-sub);
+  letter-spacing: var(--track-sub);
+  color: var(--graphite);
+  line-height: 1.4;
+  max-width: 44ch;
+  padding-bottom: 4px;
+}
+@media (max-width: 800px) {
+  .services-head { grid-template-columns: 1fr; gap: var(--sp-24); }
+}
+
+.services-list { border-top: 1px solid var(--fog); }
+
+.service {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  gap: var(--sp-24);
+  align-items: baseline;
+  padding-block: var(--sp-32);
+  border-bottom: 1px solid var(--fog);
+  position: relative;
+  transition: padding-left .4s cubic-bezier(.3,.8,.3,1);
+}
+.service::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--sky);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform .45s cubic-bezier(.3,.8,.3,1);
+}
+.service:hover { padding-left: var(--sp-24); }
+.service:hover::before { transform: scaleY(1); }
+
+.service-num {
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  color: var(--graphite);
+  letter-spacing: var(--track-body);
+  font-variant-numeric: tabular-nums;
+  transition: color .3s ease;
+}
+.service:hover .service-num { color: var(--ink); }
+
+.service-title {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h);
+  font-weight: 400;
+  letter-spacing: var(--track-h);
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.service-price {
+  font-size: var(--fs-sm);
+  letter-spacing: var(--track-sm);
+  font-weight: 500;
+  color: var(--graphite);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  transition: color .3s ease;
+}
+.service:hover .service-price { color: var(--ink); }
+
+.service-desc {
+  grid-column: 2 / -1;
+  margin-top: var(--sp-8);
+  font-size: var(--fs-body);
+  letter-spacing: var(--track-body);
+  line-height: 1.5;
+  color: var(--graphite);
+  max-width: 62ch;
+}
+
+@media (max-width: 640px) {
+  .service {
+    grid-template-columns: 40px minmax(0,1fr);
+    gap: var(--sp-8) var(--sp-16);
+  }
+  .service-num { grid-column: 1; grid-row: 1; }
+  .service-title { grid-column: 2; }
+  .service-price { grid-column: 2; grid-row: 3; margin-top: 4px; color: var(--graphite); }
+  .service-desc { grid-column: 2; grid-row: 4; }
+}
+
+/* ================================================================
+   ABOUT
+================================================================ */
+.about-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: clamp(32px, 6vw, 80px);
+  align-items: start;
+}
+
+.about-copy { max-width: 640px; }
+
+.about-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: var(--track-h-sm);
+  line-height: 1.35;
+  color: var(--ink);
+  margin: var(--sp-32) 0 var(--sp-40);
+  max-width: 34ch;
+}
+
+.about-bio {
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  letter-spacing: var(--track-body);
+  color: var(--graphite);
+  max-width: 56ch;
+  margin-bottom: var(--sp-48);
+}
+
+.about-facts { border-top: 1px solid var(--fog); }
+.about-facts li {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: var(--sp-24);
+  padding-block: var(--sp-16);
+  border-bottom: 1px solid var(--fog);
+}
+.about-facts dt {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--graphite);
+  padding-top: 3px;
+}
+.about-facts dd {
+  font-size: var(--fs-body);
+  letter-spacing: var(--track-body);
+  line-height: 1.5;
+  color: var(--ink);
+}
+@media (max-width: 640px) {
+  .about-facts li { grid-template-columns: 1fr; gap: 4px; }
+}
+
+.about-figure img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--r-img);
+  filter: saturate(.92) contrast(1.01);
+}
+.about-figure figcaption {
+  margin-top: var(--sp-16);
+  padding-top: var(--sp-16);
+  border-top: 1px solid var(--fog);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+@media (max-width: 900px) {
+  .about-inner { grid-template-columns: 1fr; }
+  .about-figure { max-width: 400px; order: -1; }
+}
+
+/* ================================================================
+   SYMPTOMS — чек-лист
+================================================================ */
+.symptoms-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  gap: clamp(32px, 6vw, 80px);
+  align-items: start;
+}
+.symptoms-intro h2 { max-width: 14ch; margin-bottom: var(--sp-24); }
+.symptoms-intro p {
+  font-size: var(--fs-body);
+  letter-spacing: var(--track-body);
+  color: var(--graphite);
+  line-height: 1.5;
+  max-width: 36ch;
+}
+
+.symptoms-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--sp-48);
+  border-top: 1px solid var(--fog);
+}
+.symptom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-16);
+  padding-block: var(--sp-24);
+  border-bottom: 1px solid var(--fog);
+  font-size: var(--fs-body);
+  letter-spacing: var(--track-body);
+  line-height: 1.5;
+  color: var(--ink);
+  transition: color .2s ease, padding-left .35s cubic-bezier(.3,.8,.3,1);
+  position: relative;
+}
+.symptom::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--sky);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform .4s cubic-bezier(.3,.8,.3,1);
+}
+.symptom:hover { padding-left: var(--sp-16); color: var(--graphite); }
+.symptom:hover::before { transform: scaleY(1); }
+.symptom span:last-child {
+  flex-shrink: 0;
+  color: var(--graphite);
+  transition: transform .3s ease;
+}
+.symptom:hover span:last-child { transform: translateX(4px); }
+
+@media (max-width: 800px) {
+  .symptoms-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .symptoms-list { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
+   QUOTE / TESTIMONIAL — pull-quote
+================================================================ */
+.quote-section {
+  background: var(--parchment);
+  padding-block: clamp(56px, 7vw, var(--sp-112));
+  position: relative;
+  overflow: hidden;
+}
+.quote-section::after {
+  content: "";
+  position: absolute;
+  bottom: -20%; right: -10%;
+  width: 50%; height: 100%;
+  background: radial-gradient(circle, rgba(151,205,229,.25), transparent 65%);
+  pointer-events: none;
+}
+
+.quote-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.quote-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  font-weight: 400;
+  letter-spacing: var(--track-h-sm);
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: var(--sp-40);
+}
+
+.quote-author {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-16);
+}
+.quote-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--fog);
+  display: grid;
+  place-items: center;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: var(--track-sm);
+  color: var(--ink);
+}
+.quote-name {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: var(--track-sm);
+  color: var(--ink);
+  text-align: left;
+}
+.quote-role {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  color: var(--graphite);
+  text-align: left;
+}
+
+/* ================================================================
+   APPOINTMENT
+================================================================ */
+.appointment-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 80px);
+  align-items: start;
+}
+
+.appointment-copy h2 { max-width: 16ch; margin-bottom: var(--sp-24); }
+.appointment-copy p {
+  font-size: var(--fs-sub);
+  letter-spacing: var(--track-sub);
+  color: var(--graphite);
+  line-height: 1.4;
+  max-width: 40ch;
+  margin-bottom: var(--sp-40);
+}
+
+.appointment-points {
+  display: grid;
+  gap: var(--sp-16);
+  border-top: 1px solid var(--fog);
+  padding-top: var(--sp-32);
+}
+.appointment-points li {
+  display: flex;
+  gap: var(--sp-16);
+  font-size: var(--fs-body);
+  letter-spacing: var(--track-body);
+  line-height: 1.5;
+  color: var(--graphite);
+}
+.appointment-points li::before {
+  content: "";
+  width: 5px; height: 5px;
+  background: var(--sky);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 9px;
+}
+
+.form {
+  background: var(--paper);
+  border: 1px solid var(--fog);
+  border-radius: var(--r-card);
+  padding: clamp(24px, 3vw, 40px);
+  display: grid;
+  gap: var(--sp-24);
+}
+
+.form-field { display: grid; gap: var(--sp-8); }
+.form-field label {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 12px 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  letter-spacing: var(--track-body);
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--fog);
+  border-radius: 0;
+  outline: none;
+  transition: border-color .25s ease;
+  appearance: none;
+}
+.form-field select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1.5 6 6.5l5-5' stroke='%2328262a' stroke-width='1.5' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  padding-right: 24px;
+  cursor: pointer;
+}
+.form-field select option { background: var(--paper); color: var(--ink); }
+.form-field textarea {
+  resize: vertical;
+  min-height: 72px;
+  line-height: 1.5;
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder { color: var(--silver); }
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus { border-bottom-color: var(--ink); }
+
+.form-submit {
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--sage);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  letter-spacing: var(--track-body);
+  border-radius: var(--r-btn);
+  transition: background .25s ease, transform .2s ease;
+}
+.form-submit:hover { background: #b9d496; transform: translateY(-1px); }
+.form-submit:disabled { opacity: .6; cursor: default; transform: none; }
+
+.form-note {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  color: var(--graphite);
+  line-height: 1.5;
+  text-align: center;
+}
+.form-note a { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 900px) {
+  .appointment-inner { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
+   FOOTER
+================================================================ */
+.footer {
+  background: var(--parchment);
+  padding-top: clamp(48px, 6vw, 80px);
+  padding-bottom: var(--sp-32);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+  gap: clamp(32px, 4vw, 64px);
+  padding-bottom: var(--sp-48);
+  border-bottom: 1px solid var(--fog);
+}
+
+.footer-brand .nav-brand { font-size: 1.5rem; }
+.footer-brand .nav-brand span { margin-bottom: var(--sp-24); }
+.footer-about {
+  font-size: var(--fs-body);
+  letter-spacing: var(--track-body);
+  line-height: 1.6;
+  color: var(--graphite);
+  max-width: 34ch;
+  margin-top: var(--sp-24);
+}
+
+.footer-col h4 {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--graphite);
+  margin-bottom: var(--sp-24);
+  font-weight: 500;
+}
+.footer-col ul { display: grid; gap: var(--sp-16); }
+.footer-col a {
+  font-size: var(--fs-body);
+  letter-spacing: var(--track-body);
+  color: var(--ink);
+  transition: color .2s ease;
+}
+.footer-col a:hover { color: var(--graphite); }
+
+.footer-contact {
+  display: flex;
+  gap: var(--sp-16);
+  align-items: flex-start;
+  margin-bottom: var(--sp-16);
+  font-size: var(--fs-body);
+  letter-spacing: var(--track-body);
+  line-height: 1.5;
+  color: var(--ink);
+}
+.footer-contact::before {
+  content: "";
+  width: 5px; height: 5px;
+  background: var(--sky);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 9px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-24);
+  flex-wrap: wrap;
+  padding-top: var(--sp-32);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  color: var(--graphite);
+}
+.footer-bottom a:hover { color: var(--ink); }
+
+.footer-legal {
+  margin-top: var(--sp-32);
+  padding-top: var(--sp-32);
+  border-top: 1px solid var(--fog);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  line-height: 1.6;
+  color: var(--graphite);
+  max-width: 92ch;
+}
+
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--sp-40); }
+  .footer-brand { grid-column: span 2; }
+}
+@media (max-width: 560px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-brand { grid-column: auto; }
+}
+
+/* ================================================================
+   REVEAL
+================================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .8s cubic-bezier(.2,.7,.2,1),
+                transform .8s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal:nth-child(2) { transition-delay: .06s; }
+  .reveal:nth-child(3) { transition-delay: .12s; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ======================= NAV ======================= -->
+<header class="nav" id="siteNav">
+  <div class="wrap nav-inner">
+    <a href="#" class="nav-brand">
+      Дмитриев Владимир
+      <span>врач-уролог · Санкт-Петербург</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#services">Направления</a>
+      <a href="#about">О враче</a>
+      <a href="#symptoms">Симптомы</a>
+      <a href="#appointment">Запись</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="tel:+78121234567" class="nav-phone">+7 812 123-45-67</a>
+      <a href="#appointment" class="btn btn-sage">Записаться</a>
+      <button class="nav-burger" aria-label="Меню" aria-expanded="false" id="navBurger">
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav-mobile" id="navMobile">
+    <div class="wrap">
+      <ul>
+        <li><a href="#services">Направления</a></li>
+        <li><a href="#about">О враче</a></li>
+        <li><a href="#symptoms">Симптомы</a></li>
+        <li><a href="#appointment">Запись</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy reveal">
+      <span class="hero-eyebrow">Врач-уролог · стаж более 12 лет</span>
+
+      <h1 class="hero-title">
+        Урология без страха и <span class="hl">неловкости</span>
+      </h1>
+
+      <p class="lead hero-lead">
+        Диагностика и лечение простатита, аденомы простаты, мочекаменной болезни
+        и андрологических нарушений. Работаю по принципам доказательной медицины —
+        только те исследования, которые изменят тактику лечения.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#appointment" class="btn btn-sage">
+          Записаться на приём
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#services" class="btn btn-ghost">Направления →</a>
+      </div>
+
+      <dl class="hero-meta">
+        <div>
+          <dt>Возраст</dt>
+          <dd>37 лет</dd>
+        </div>
+        <div>
+          <dt>Стаж</dt>
+          <dd>12+ лет</dd>
+        </div>
+        <div>
+          <dt>Место работы</dt>
+          <dd>ВЦЭРМ им. А. М. Никифорова</dd>
+        </div>
+      </dl>
+    </div>
+
+    <figure class="hero-figure reveal">
+      <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=900&q=80&auto=format&fit=crop" alt="Дмитриев Владимир Валерьевич, врач-уролог" loading="eager">
+      <figcaption>
+        <span>Дмитриев В. В.</span>
+        <span>к. м. н. · урология</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= APPROACH ======================= -->
+<section class="section band" id="approach">
+  <div class="wrap approach-inner">
+    <div class="approach-intro reveal">
+      <span class="caption">Подход</span>
+      <h2>Как я работаю</h2>
+    </div>
+
+    <div class="approach-principles">
+      <article class="principle reveal">
+        <span class="principle-num">01</span>
+        <div>
+          <h3>Только необходимые обследования</h3>
+          <p>Не назначаю «на всякий случай». Каждое исследование должно влиять на тактику лечения — иначе оно бессмысленно.</p>
+        </div>
+      </article>
+
+      <article class="principle reveal">
+        <span class="principle-num">02</span>
+        <div>
+          <h3>Понятный план лечения</h3>
+          <p>Объясняю диагноз простым языком, показываю снимки и результаты. Вы понимаете, что происходит и почему.</p>
+        </div>
+      </article>
+
+      <article class="principle reveal">
+        <span class="principle-num">03</span>
+        <div>
+          <h3>Деликатность и конфиденциальность</h3>
+          <p>Урологические темы требуют особого такта. Приём проходит спокойно, без неловкости и лишних вопросов.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SERVICES ======================= -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="services-head reveal">
+      <h2>Направления</h2>
+      <p>Полный спектр урологической помощи — от первичной диагностики до наблюдения после лечения.</p>
+    </div>
+
+    <div class="services-list">
+      <a href="#appointment" class="service reveal">
+        <span class="service-num">01</span>
+        <span class="service-title">Простатит и аденома</span>
+        <span class="service-price">от 3 500 ₽</span>
+        <span class="service-desc">Диагностика и комплексное лечение воспалительных и гиперпластических заболеваний предстательной железы.</span>
+      </a>
+
+      <a href="#appointment" class="service reveal">
+        <span class="service-num">02</span>
+        <span class="service-title">Мочекаменная болезнь</span>
+        <span class="service-price">от 4 000 ₽</span>
+        <span class="service-desc">УЗИ почек, определение состава камней, консервативное и оперативное лечение, профилактика рецидивов.</span>
+      </a>
+
+      <a href="#appointment" class="service reveal">
+        <span class="service-num">03</span>
+        <span class="service-title">Андрология</span>
+        <span class="service-price">от 3 800 ₽</span>
+        <span class="service-desc">Нарушения эректильной функции, бесплодие, гормональный дисбаланс, мужское здоровье после 40 лет.</span>
+      </a>
+
+      <a href="#appointment" class="service reveal">
+        <span class="service-num">04</span>
+        <span class="service-title">Уродинамика и диагностика</span>
+        <span class="service-price">от 2 900 ₽</span>
+        <span class="service-desc">Комплексное уродинамическое исследование, урофлоуметрия, УЗИ мочевого пузыря и почек на месте.</span>
+      </a>
+
+      <a href="#appointment" class="service reveal">
+        <span class="service-num">05</span>
+        <span class="service-title">Онкоурология</span>
+        <span class="service-price">от 5 000 ₽</span>
+        <span class="service-desc">Ранняя диагностика опухолей предстательной железы, почек и мочевого пузыря. Наблюдение после лечения.</span>
+      </a>
+
+      <a href="#appointment" class="service reveal">
+        <span class="service-num">06</span>
+        <span class="service-title">Инфекции мочевыводящих путей</span>
+        <span class="service-price">от 3 200 ₽</span>
+        <span class="service-desc">Лечение цистита, пиелонефрита, уретрита. Подбор антибактериальной терапии с учётом чувствительности.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ABOUT ======================= -->
+<section class="section band" id="about">
+  <div class="wrap about-inner">
+    <div class="about-copy reveal">
+      <span class="caption">О враче</span>
+      <h2>Дмитриев<br>Владимир Валерьевич</h2>
+
+      <p class="about-quote">
+        Моя задача — не назначить как можно больше анализов, а быстро понять причину и объяснить её пациенту.
+      </p>
+
+      <p class="about-bio">
+        Врач-уролог со стажем более 12 лет. Работаю в ФГБУ ВЦЭРМ им. А. М. Никифорова,
+        специализируюсь на мужском здоровье, мочекаменной болезни и урологической онкологии.
+        Работаю по принципам доказательной медицины — только те исследования, которые
+        изменят тактику лечения.
+      </p>
+
+      <dl class="about-facts">
+        <li>
+          <dt>Возраст</dt>
+          <dd>37 лет</dd>
+        </li>
+        <li>
+          <dt>Образование</dt>
+          <dd>2006–2012 — Военно-медицинская академия им. С. М. Кирова, специальность «Лечебное дело».</dd>
+        </li>
+        <li>
+          <dt>Ординатура</dt>
+          <dd>2012–2014 — Национальный медико-хирургический центр им. Н. И. Пирогова, специальность «Урология».</dd>
+        </li>
+        <li>
+          <dt>Место работы</dt>
+          <dd>С 2014 года — врач-уролог ФГБУ ВЦЭРМ им. А. М. Никифорова.</dd>
+        </li>
+        <li>
+          <dt>Стаж</dt>
+          <dd>Более 12 лет клинической практики по специальности «урология».</dd>
+        </li>
+      </dl>
+    </div>
+
+    <figure class="about-figure reveal">
+      <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=900&q=80&auto=format&fit=crop" alt="Владимир Дмитриев в кабинете" loading="lazy">
+      <figcaption>Приём в клинике</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= SYMPTOMS ======================= -->
+<section class="section" id="symptoms">
+  <div class="wrap symptoms-inner">
+    <div class="symptoms-intro reveal">
+      <span class="caption">С чем обращаются</span>
+      <h2>Знакомые симптомы?</h2>
+      <p>Не откладывайте визит — ранняя диагностика существенно упрощает лечение и сокращает его срок.</p>
+    </div>
+
+    <div class="symptoms-list">
+      <a href="#appointment" class="symptom reveal">
+        <span>Частое мочеиспускание, особенно ночью</span>
+        <span>→</span>
+      </a>
+      <a href="#appointment" class="symptom reveal">
+        <span>Боль или жжение при мочеиспускании</span>
+        <span>→</span>
+      </a>
+      <a href="#appointment" class="symptom reveal">
+        <span>Кровь в моче</span>
+        <span>→</span>
+      </a>
+      <a href="#appointment" class="symptom reveal">
+        <span>Тянущие боли внизу живота</span>
+        <span>→</span>
+      </a>
+      <a href="#appointment" class="symptom reveal">
+        <span>Эректильная дисфункция</span>
+        <span>→</span>
+      </a>
+      <a href="#appointment" class="symptom reveal">
+        <span>Повышенный ПСА</span>
+        <span>→</span>
+      </a>
+      <a href="#appointment" class="symptom reveal">
+        <span>Камни в почках по УЗИ</span>
+        <span>→</span>
+      </a>
+      <a href="#appointment" class="symptom reveal">
+        <span>Плановый осмотр мужского здоровья</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= QUOTE ======================= -->
+<section class="quote-section" id="reviews">
+  <div class="wrap quote-inner reveal">
+    <p class="quote-text">
+      Обращался с простатитом. Владимир Валерьевич внимательно выслушал, назначил
+      только необходимые обследования, без «лишних» анализов. Через два месяца —
+      стойкая ремиссия. Отдельно отмечу деликатность и отсутствие неловкости.
+    </p>
+    <div class="quote-author">
+      <div class="quote-avatar">АК</div>
+      <div>
+        <div class="quote-name">Алексей К.</div>
+        <div class="quote-role">Пациент, 47 лет</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= APPOINTMENT ======================= -->
+<section class="section" id="appointment">
+  <div class="wrap appointment-inner">
+    <div class="appointment-copy reveal">
+      <span class="caption">Запись на приём</span>
+      <h2>Первый шаг к решению проблемы</h2>
+      <p>Оставьте заявку — администратор свяжется в течение 15 минут, подберёт удобное время и ответит на вопросы.</p>
+
+      <ul class="appointment-points">
+        <li>Приём длится 2 часа — подробно и без спешки</li>
+        <li>Диагностика (УЗИ, анализы) — на месте, без направления</li>
+        <li>Полная конфиденциальность и деликатность</li>
+      </ul>
+    </div>
+
+    <form class="form reveal" id="appointmentForm" novalidate>
+      <div class="form-field">
+        <label for="name">Ваше имя</label>
+        <input type="text" id="name" name="name" placeholder="Как к вам обращаться" required>
+      </div>
+
+      <div class="form-field">
+        <label for="phone">Телефон</label>
+        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+      </div>
+
+      <div class="form-field">
+        <label for="service">Направление</label>
+        <select id="service" name="service">
+          <option>Консультация уролога</option>
+          <option>Простатит / аденома</option>
+          <option>Мочекаменная болезнь</option>
+          <option>Андрология</option>
+          <option>Онкоурология</option>
+          <option>Инфекции мочевыводящих путей</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="comment">Комментарий — необязательно</label>
+        <textarea id="comment" name="comment" placeholder="Кратко опишите жалобы или удобное время"></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">Записаться на приём</button>
+
+      <p class="form-note">
+        Нажимая кнопку, вы соглашаетесь с <a href="#">политикой обработки персональных данных</a>.
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="footer" id="contacts">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-brand">
+          Дмитриев Владимир
+          <span>врач-уролог · Санкт-Петербург</span>
+        </a>
+        <p class="footer-about">
+          Частная урологическая практика. Доказательная медицина,
+          деликатный подход, понятный план лечения.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="#services">Направления</a></li>
+          <li><a href="#about">О враче</a></li>
+          <li><a href="#symptoms">Симптомы</a></li>
+          <li><a href="#appointment">Запись</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Услуги</h4>
+        <ul>
+          <li><a href="#services">Консультация уролога</a></li>
+          <li><a href="#services">Лечение простатита</a></li>
+          <li><a href="#services">Мочекаменная болезнь</a></li>
+          <li><a href="#services">Андрология</a></li>
+          <li><a href="#services">Онкоурология</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <div class="footer-contact"><a href="tel:+78121234567">+7 (812) 123-45-67</a></div>
+        <div class="footer-contact"><a href="mailto:info@dmitriev-urology.ru">info@dmitriev-urology.ru</a></div>
+        <div class="footer-contact"><span>Санкт-Петербург, ул. Примерная, 15,<br>медцентр, 3 этаж</span></div>
+        <div class="footer-contact"><span>Пн–Сб: 9:00 – 20:00<br>Вс: по записи</span></div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Дмитриев Владимир Валерьевич. Все права защищены.</span>
+      <span><a href="#">Политика конфиденциальности</a> · <a href="#">Пользовательское соглашение</a></span>
+    </div>
+
+    <p class="footer-legal">
+      Имеются противопоказания. Необходима консультация специалиста.
+      Информация на сайте не является публичной офертой и не заменяет
+      очную консультацию врача. Сайт соответствует требованиям приказа
+      Минздрава России № 118н от 30.12.2014.
+    </p>
+  </div>
+</footer>
+
+<!-- ======================= SCRIPTS ======================= -->
+<script>
+/* ── Мобильное меню ───────────────────────────────────────── */
+const burger = document.getElementById('navBurger');
+const mobile = document.getElementById('navMobile');
+burger?.addEventListener('click', () => {
+  const open = mobile.classList.toggle('open');
+  burger.setAttribute('aria-expanded', String(open));
+});
+mobile?.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => {
+    mobile.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  })
+);
+
+/* ── Reveal ───────────────────────────────────────────────── */
+const revealEls = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach((el) => io.observe(el));
+} else {
+  revealEls.forEach((el) => el.classList.add('is-visible'));
+}
+
+/* ── Форма ────────────────────────────────────────────────── */
+const form = document.getElementById('appointmentForm');
+form?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name  = form.querySelector('#name').value.trim();
+  const phone = form.querySelector('#phone').value.trim();
+
+  if (!name || !phone) {
+    alert('Пожалуйста, заполните имя и телефон.');
+    return;
+  }
+
+  const btn = form.querySelector('.form-submit');
+  btn.textContent = 'Спасибо! Мы свяжемся с вами';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    form.reset();
+    btn.textContent = 'Записаться на приём';
+    btn.disabled = false;
+  }, 4000);
+});
+
+/* ── Маска телефона ───────────────────────────────────────── */
+const phoneInput = document.getElementById('phone');
+phoneInput?.addEventListener('input', (e) => {
+  let v = e.target.value.replace(/\D/g, '');
+  if (v.startsWith('8')) v = '7' + v.slice(1);
+  if (!v.startsWith('7')) v = '7' + v;
+  v = v.slice(0, 11);
+
+  let out = '+7';
+  if (v.length > 1)  out += ' (' + v.slice(1, 4);
+  if (v.length >= 4) out += ') ' + v.slice(4, 7);
+  if (v.length >= 7) out += '-'   + v.slice(7, 9);
+  if (v.length >= 9) out += '-'   + v.slice(9, 11);
+
+  e.target.value = out;
+});
+</script>
+
+</body>
+</html>
