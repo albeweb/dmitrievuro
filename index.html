@@ -42,12 +42,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="format-detection" content="telephone=yes" />
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%23c8dfaa'/%3E%3Ctext%20x='32'%20y='33'%20font-family='Georgia,serif'%20font-size='46'%20font-weight='600'%20fill='%23ffffff'%20text-anchor='middle'%20dominant-baseline='central'%3ED%3C/text%3E%3C/svg%3E" />
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%23c8dfaa'/%3E%3Ctext%20x='32'%20y='33'%20font-family='Georgia,serif'%20font-size='46'%20font-weight='600'%20fill='%23ffffff'%20text-anchor='middle'%20dominant-baseline='central'%3ED%3C/text%3E%3C/svg%3E" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%23c8dfaa'/%3E%3Ctext%20x='32'%20y='33'%20font-family='Geist,sans-serif'%20font-size='46'%20font-weight='600'%20fill='%23ffffff'%20text-anchor='middle'%20dominant-baseline='central'%3ED%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%23c8dfaa'/%3E%3Ctext%20x='32'%20y='33'%20font-family='Geist,sans-serif'%20font-size='46'%20font-weight='600'%20fill='%23ffffff'%20text-anchor='middle'%20dominant-baseline='central'%3ED%3C/text%3E%3C/svg%3E" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet" />
+<link rel="preload" href="Geist-Regular.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="Geist-Medium.woff2" as="font" type="font/woff2" crossorigin />
 
 <script type="application/ld+json">
 {
@@ -261,6 +260,28 @@
 </script>
 
 <style>
+@font-face {
+  font-family: 'Geist';
+  src: url('Geist-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('Geist-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('Geist-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --parchment: #f3f1eb;
   --ink: #28262a;
@@ -272,8 +293,8 @@
   --sage: #c8dfaa;
   --albe: #F5B700;
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-sans: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   --fs-caption: 0.75rem; --fs-sm: 0.875rem; --fs-body: 1rem; --fs-sub: 1.125rem;
   --fs-h-sm: 1.5rem; --fs-h: 2rem; --fs-h-lg: 3rem; --fs-display: 3.5rem;
@@ -370,7 +391,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .principle { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: var(--sp-24); padding-bottom: var(--sp-40); border-bottom: 1px solid var(--fog); }
 .principle:last-child { border-bottom: none; padding-bottom: 0; }
 .principle-num { font-family: var(--font-serif); font-size: var(--fs-h-sm); color: var(--sky); letter-spacing: var(--track-h-sm); line-height: 1; }
-.principle h3 { font-family: var(--font-serif); font-size: var(--fs-h-sm); font-weight: 400; letter-spacing: var(--track-h-sm); margin-bottom: var(--sp-8); }
+.principle h3 { font-family: var(--font-serif); font-size: var(--fs-h-sm); font-weight: 500; letter-spacing: var(--track-h-sm); margin-bottom: var(--sp-8); }
 .principle p { font-size: var(--fs-body); line-height: 1.5; letter-spacing: var(--track-body); color: var(--graphite); max-width: 70ch; }
 @media (max-width: 800px) { .approach-inner { grid-template-columns: 1fr; } }
 
@@ -385,7 +406,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .service:hover::before { transform: scaleY(1); }
 .service-num { font-family: var(--font-serif); font-size: var(--fs-body); color: var(--graphite); letter-spacing: var(--track-body); font-variant-numeric: tabular-nums; transition: color .3s ease; }
 .service:hover .service-num { color: var(--ink); }
-.service-title { font-family: var(--font-serif); font-size: var(--fs-h); font-weight: 400; letter-spacing: var(--track-h); line-height: 1.2; color: var(--ink); }
+.service-title { font-family: var(--font-serif); font-size: var(--fs-h); font-weight: 500; letter-spacing: var(--track-h); line-height: 1.2; color: var(--ink); }
 .service-desc { grid-column: 2 / -1; margin-top: var(--sp-8); font-size: var(--fs-body); letter-spacing: var(--track-body); line-height: 1.5; color: var(--graphite); max-width: 78ch; }
 @media (max-width: 640px) { .service { grid-template-columns: 40px minmax(0,1fr); gap: var(--sp-8) var(--sp-16); } .service-num { grid-column: 1; grid-row: 1; } .service-title { grid-column: 2; } .service-desc { grid-column: 2; grid-row: 3; } }
 
@@ -397,7 +418,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .method-media { position: relative; aspect-ratio: 5 / 4; border-radius: var(--r-card); overflow: hidden; background: var(--parchment); }
 .method-media svg { width: 100%; height: 100%; display: block; }
 .method-abbr { position: absolute; top: 16px; left: 16px; font-family: var(--font-sans); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; color: var(--ink); padding: 6px 12px; border-radius: 100px; background: var(--paper); border: 1px solid var(--fog); }
-.method-caption h3 { font-family: var(--font-serif); font-size: clamp(1.4rem, 2.4vw, 1.75rem); font-weight: 400; letter-spacing: var(--track-h-sm); line-height: 1.25; color: var(--ink); margin-bottom: var(--sp-16); }
+.method-caption h3 { font-family: var(--font-serif); font-size: clamp(1.4rem, 2.4vw, 1.75rem); font-weight: 500; letter-spacing: var(--track-h-sm); line-height: 1.25; color: var(--ink); margin-bottom: var(--sp-16); }
 .method-caption p { font-size: var(--fs-body); line-height: 1.6; letter-spacing: var(--track-body); color: var(--graphite); margin-bottom: var(--sp-24); }
 .method-price { display: block; font-size: var(--fs-sm); letter-spacing: var(--track-sm); font-weight: 500; color: var(--ink); padding-top: var(--sp-16); border-top: 1px solid var(--fog); }
 .methods-nav { display: flex; align-items: center; justify-content: center; gap: var(--sp-24); margin-top: var(--sp-32); }
@@ -497,7 +518,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .modal-close:hover { background: var(--parchment); color: var(--ink); }
 .modal-close:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; }
 .modal-eyebrow { display: block; margin-bottom: 12px; }
-.modal-title { font-family: var(--font-serif); font-size: clamp(1.4rem, 2.5vw, 1.75rem); font-weight: 400; letter-spacing: var(--track-h-sm); line-height: 1.25; color: var(--ink); margin-bottom: 28px; padding-right: 40px; }
+.modal-title { font-family: var(--font-serif); font-size: clamp(1.4rem, 2.5vw, 1.75rem); font-weight: 500; letter-spacing: var(--track-h-sm); line-height: 1.25; color: var(--ink); margin-bottom: 28px; padding-right: 40px; }
 .modal-body { display: grid; gap: 24px; margin-bottom: 32px; }
 .modal-block h4 { font-family: var(--font-sans); font-size: var(--fs-caption); font-weight: 500; letter-spacing: var(--track-caption); text-transform: uppercase; color: var(--graphite); margin-bottom: 8px; }
 .modal-block p { font-size: var(--fs-body); line-height: 1.55; letter-spacing: var(--track-body); color: var(--ink); }
