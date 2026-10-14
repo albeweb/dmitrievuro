@@ -348,8 +348,11 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 
 .nav { position: sticky; top: 0; z-index: 100; background: var(--paper); padding-block: var(--sp-16); }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-24); }
-.nav-brand { font-size: 1.125rem; font-weight: 500; letter-spacing: var(--track-sub); color: var(--ink); line-height: 1.1; }
-.nav-brand span { display: block; font-size: var(--fs-caption); font-weight: 400; letter-spacing: var(--track-caption); text-transform: uppercase; color: var(--graphite); margin-top: 3px; }
+.nav-brand { font-size: 1.125rem; font-weight: 500; letter-spacing: var(--track-sub); color: var(--ink); line-height: 1.1; display: inline-block; }
+.nav-brand > span { display: block; font-size: var(--fs-caption); font-weight: 400; letter-spacing: var(--track-caption); text-transform: uppercase; color: var(--graphite); margin-top: 3px; line-height: 1.35; }
+.nav-brand-role,
+.nav-brand-city { display: inline; }
+.nav-brand-city::before { content: " · "; }
 .nav-links { display: flex; align-items: center; gap: var(--sp-32); }
 .nav-links a { font-size: var(--fs-sm); letter-spacing: var(--track-sm); color: var(--graphite); transition: color .2s ease; }
 .nav-links a:hover { color: var(--ink); }
@@ -372,7 +375,11 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
   .nav { padding-block: 10px; }
   .nav-inner { gap: var(--sp-16); }
   .nav .nav-brand { font-size: 1rem; }
-  .nav .nav-brand span { font-size: 0.625rem; letter-spacing: 0.04em; margin-top: 2px; }
+  .nav .nav-brand > span { font-size: 0.625rem; letter-spacing: 0.05em; margin-top: 3px; }
+  .nav .nav-brand-role,
+  .nav .nav-brand-city { display: block; }
+  .nav .nav-brand-city { margin-top: 1px; }
+  .nav .nav-brand-city::before { content: none; }
   .nav-right { gap: 10px; }
   .nav-right .btn-sage { padding: 7px 14px; font-size: var(--fs-sm); }
   .nav-burger { width: 36px; height: 36px; }
@@ -530,7 +537,6 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
   .service { padding-block: var(--sp-24); }
   .method-slide { padding: var(--sp-16) var(--sp-16) var(--sp-24); }
   .review-card { padding: var(--sp-24) var(--sp-16); }
-  .legal-note { padding: var(--sp-16); }
 }
 
 .modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
@@ -632,7 +638,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
   <div class="wrap nav-inner">
     <a href="#top" class="nav-brand" aria-label="Дмитриев Владимир Валерьевич — врач-уролог, Санкт-Петербург">
       Дмитриев Владимир
-      <span>врач-уролог · Санкт-Петербург</span>
+      <span class="nav-brand-meta"><span class="nav-brand-role">врач-уролог</span><span class="nav-brand-city">Санкт-Петербург</span></span>
     </a>
 
     <nav class="nav-links" aria-label="Основная навигация">
