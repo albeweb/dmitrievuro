@@ -437,10 +437,10 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .about-quote { font-family: var(--font-serif); font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 400; letter-spacing: var(--track-h-sm); line-height: 1.35; color: var(--ink); margin: var(--sp-32) 0 var(--sp-40); max-width: 40ch; }
 .about-bio { font-size: var(--fs-body); line-height: 1.6; letter-spacing: var(--track-body); color: var(--graphite); max-width: 68ch; margin-bottom: var(--sp-40); }
 .about-facts { border-top: 1px solid var(--fog); margin-bottom: var(--sp-40); }
-.about-facts li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: var(--sp-24); padding-block: var(--sp-16); border-bottom: 1px solid var(--fog); }
+.about-facts > div { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: var(--sp-24); padding-block: var(--sp-16); border-bottom: 1px solid var(--fog); }
 .about-facts dt { font-size: var(--fs-caption); letter-spacing: var(--track-caption); text-transform: uppercase; color: var(--graphite); padding-top: 3px; }
 .about-facts dd { font-size: var(--fs-body); letter-spacing: var(--track-body); line-height: 1.5; color: var(--ink); }
-@media (max-width: 640px) { .about-facts li { grid-template-columns: 1fr; gap: 4px; } }
+@media (max-width: 640px) { .about-facts > div { grid-template-columns: 1fr; gap: 4px; } }
 .about-why h3 { font-family: var(--font-sans); font-size: var(--fs-caption); font-weight: 500; letter-spacing: var(--track-caption); text-transform: uppercase; color: var(--graphite); margin-bottom: var(--sp-16); }
 .about-why ul { display: grid; gap: var(--sp-16); border-top: 1px solid var(--fog); padding-top: var(--sp-24); }
 .about-why li { display: flex; gap: var(--sp-16); font-size: var(--fs-body); line-height: 1.55; letter-spacing: var(--track-body); color: var(--graphite); }
@@ -533,7 +533,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .footer-brand .nav-brand { font-size: 1.5rem; }
 .footer-brand .nav-brand span { margin-bottom: var(--sp-24); }
 .footer-about { font-size: var(--fs-body); letter-spacing: var(--track-body); line-height: 1.6; color: var(--graphite); max-width: 44ch; margin-top: var(--sp-24); }
-.footer-col h4 { font-size: var(--fs-caption); letter-spacing: var(--track-caption); text-transform: uppercase; color: var(--graphite); margin-bottom: var(--sp-24); font-weight: 500; }
+.footer-col h3 { font-size: var(--fs-caption); letter-spacing: var(--track-caption); text-transform: uppercase; color: var(--graphite); margin-bottom: var(--sp-24); font-weight: 500; }
 .footer-col ul { display: grid; gap: var(--sp-16); }
 .footer-col a { font-size: var(--fs-body); letter-spacing: var(--track-body); color: var(--ink); transition: color .2s ease; }
 .footer-col a:hover { color: var(--graphite); }
@@ -548,7 +548,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
   padding-top: var(--sp-24);
   border-top: 1px solid var(--fog);
 }
-.footer-directions h5 {
+.footer-directions h4 {
   font-family: var(--font-sans);
   font-size: var(--fs-caption);
   font-weight: 500;
@@ -640,6 +640,8 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
     </div>
   </div>
 </header>
+
+<main>
 
 <section class="hero" id="top">
   <div class="wrap hero-inner">
@@ -908,26 +910,26 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
       </p>
 
       <dl class="about-facts">
-        <li>
+        <div>
           <dt>Стаж</dt>
           <dd>Более 12 лет клинической практики по специальности «урология»</dd>
-        </li>
-        <li>
+        </div>
+        <div>
           <dt>Операций в год</dt>
           <dd>Более 150 эндоскопических вмешательств</dd>
-        </li>
-        <li>
+        </div>
+        <div>
           <dt>Образование</dt>
           <dd>2006–2012 — Военно-медицинская академия им. С. М. Кирова, «Лечебное дело»</dd>
-        </li>
-        <li>
+        </div>
+        <div>
           <dt>Ординатура</dt>
           <dd>2012–2014 — НМХЦ им. Н. И. Пирогова, «Урология»</dd>
-        </li>
-        <li>
+        </div>
+        <div>
           <dt>Место работы</dt>
           <dd>С 2014 года — врач-уролог ФГБУ ВЦЭРМ им. А. М. Никифорова, Санкт-Петербург</dd>
-        </li>
+        </div>
       </dl>
 
       <div class="about-why">
@@ -1137,6 +1139,8 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
   </div>
 </section>
 
+</main>
+
 <footer class="footer" id="contacts" itemscope itemtype="https://schema.org/MedicalClinic">
   <div class="wrap">
     <div class="footer-grid">
@@ -1152,7 +1156,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
       </div>
 
       <div class="footer-col">
-        <h4>Навигация</h4>
+        <h3>Навигация</h3>
         <ul>
           <li><a href="#services">Направления</a></li>
           <li><a href="#methods">Методы лечения</a></li>
@@ -1163,7 +1167,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
       </div>
 
       <div class="footer-col">
-        <h4>Методы</h4>
+        <h3>Методы</h3>
         <ul>
           <li><a href="#methods">Перкутанная нефролитотрипсия</a></li>
           <li><a href="#methods">Ретроградная нефролитотрипсия</a></li>
@@ -1175,7 +1179,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 
     <div class="footer-contacts-map">
       <div class="footer-col">
-        <h4>Контакты</h4>
+        <h3>Контакты</h3>
         <div class="footer-contact" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
           <div>
             <span class="lbl">Адрес</span>
@@ -1224,7 +1228,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
         </div>
 
         <div class="footer-directions">
-          <h5>Как добраться</h5>
+          <h4>Как добраться</h4>
           <ul>
             <li><span><strong>На метро:</strong> ст. м. «Комендантский проспект» — 12 минут пешком. Ст. м. «Пионерская» — 15 минут на автобусе № 170.</span></li>
             <li><span><strong>На автомобиле:</strong> съезд с Приморского шоссе, поворот на ул. Оптиков. Бесплатная парковка перед зданием.</span></li>
@@ -1274,15 +1278,15 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
     </button>
 
     <span class="caption modal-eyebrow">Возможные причины</span>
-    <h3 class="modal-title" id="modalTitle"></h3>
+    <h2 class="modal-title" id="modalTitle"></h2>
 
     <div class="modal-body">
       <div class="modal-block">
-        <h4>Что это может быть</h4>
+        <h3>Что это может быть</h3>
         <p id="modalCauses"></p>
       </div>
       <div class="modal-block">
-        <h4>Чем это может грозить</h4>
+        <h3>Чем это может грозить</h3>
         <p id="modalRisks"></p>
       </div>
     </div>
