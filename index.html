@@ -73,22 +73,12 @@
 /* ================================================================
    CUSTOM SCROLLBAR — узкий, в цвете sage
 ================================================================ */
-/* Firefox */
 html {
   scrollbar-width: thin;
   scrollbar-color: var(--sage) transparent;
 }
-
-/* WebKit (Chrome, Safari, Edge, Opera) */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
   background: var(--sage);
   border-radius: 100px;
@@ -96,20 +86,9 @@ html {
   background-clip: padding-box;
   transition: background .25s ease;
 }
-
-::-webkit-scrollbar-thumb:hover {
-  background: #b9d496;
-  background-clip: padding-box;
-}
-
-::-webkit-scrollbar-thumb:active {
-  background: #a8c47d;
-  background-clip: padding-box;
-}
-
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
+::-webkit-scrollbar-thumb:hover { background: #b9d496; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:active { background: #a8c47d; background-clip: padding-box; }
+::-webkit-scrollbar-corner { background: transparent; }
 
 /* ================================================================
    RESET
@@ -142,6 +121,8 @@ ul { list-style: none; }
 
 ::selection { background: var(--sky); color: var(--ink); }
 
+body.modal-open { overflow: hidden; }
+
 /* ================================================================
    LAYOUT
 ================================================================ */
@@ -152,9 +133,7 @@ ul { list-style: none; }
   padding-inline: var(--edge);
 }
 
-.band {
-  background: var(--parchment);
-}
+.band { background: var(--parchment); }
 
 .section {
   padding-block: clamp(56px, 7vw, var(--sp-112));
@@ -373,13 +352,8 @@ h3 {
   background: var(--ink);
 }
 
-.hero-title {
-  margin-bottom: var(--sp-32);
-}
-
-.hero-lead {
-  margin-bottom: var(--sp-40);
-}
+.hero-title { margin-bottom: var(--sp-32); }
+.hero-lead { margin-bottom: var(--sp-40); }
 
 .hero-actions {
   display: flex;
@@ -493,7 +467,7 @@ h3 {
 }
 
 /* ================================================================
-   SERVICES — содержание
+   SERVICES
 ================================================================ */
 .services-head {
   display: grid;
@@ -671,7 +645,7 @@ h3 {
 }
 
 /* ================================================================
-   SYMPTOMS — чек-лист
+   SYMPTOMS
 ================================================================ */
 .symptoms-inner {
   display: grid;
@@ -694,13 +668,17 @@ h3 {
   column-gap: var(--sp-48);
   border-top: 1px solid var(--fog);
 }
+
 .symptom {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: var(--sp-16);
+  width: 100%;
+  text-align: left;
   padding-block: var(--sp-24);
   border-bottom: 1px solid var(--fog);
+  font-family: var(--font-sans);
   font-size: var(--fs-body);
   letter-spacing: var(--track-body);
   line-height: 1.5;
@@ -720,6 +698,11 @@ h3 {
 }
 .symptom:hover { padding-left: var(--sp-16); color: var(--graphite); }
 .symptom:hover::before { transform: scaleY(1); }
+.symptom:focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
 .symptom span:last-child {
   flex-shrink: 0;
   color: var(--graphite);
@@ -735,7 +718,7 @@ h3 {
 }
 
 /* ================================================================
-   QUOTE / TESTIMONIAL — pull-quote
+   QUOTE
 ================================================================ */
 .quote-section {
   background: var(--parchment);
@@ -925,6 +908,120 @@ h3 {
 }
 
 /* ================================================================
+   MODAL
+================================================================ */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal.is-open { display: flex; }
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(40, 38, 42, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: modalFade .3s ease;
+}
+
+.modal-panel {
+  position: relative;
+  background: var(--paper);
+  border-radius: var(--r-card);
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: clamp(28px, 4vw, 48px);
+  box-shadow: 0 30px 80px rgba(40, 38, 42, .25);
+  animation: modalSlide .35s cubic-bezier(.2,.7,.2,1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--graphite);
+  transition: background .2s ease, color .2s ease;
+}
+.modal-close:hover { background: var(--parchment); color: var(--ink); }
+.modal-close:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; }
+
+.modal-eyebrow {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.modal-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: var(--track-h-sm);
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 28px;
+  padding-right: 40px;
+}
+
+.modal-body {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.modal-block h4 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  letter-spacing: var(--track-caption);
+  text-transform: uppercase;
+  color: var(--graphite);
+  margin-bottom: 8px;
+}
+.modal-block p {
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  letter-spacing: var(--track-body);
+  color: var(--ink);
+}
+
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--fog);
+}
+.modal-actions .btn-ghost { padding: 12px 16px; }
+
+@keyframes modalFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes modalSlide {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 560px) {
+  .modal { padding: 16px; }
+  .modal-panel { padding: 24px; }
+  .modal-title { padding-right: 32px; }
+}
+
+/* ================================================================
    FOOTER
 ================================================================ */
 .footer {
@@ -933,7 +1030,6 @@ h3 {
   padding-bottom: var(--sp-32);
 }
 
-/* Подвал — автоскейл по ширине экрана, отступы 40px по краям */
 .footer > .wrap {
   max-width: 100%;
   padding-inline: 40px;
@@ -975,7 +1071,6 @@ h3 {
 }
 .footer-col a:hover { color: var(--graphite); }
 
-/* ── Контакты + Карта рядом ──────────────────────────────── */
 .footer-contacts-map {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
@@ -1013,7 +1108,6 @@ h3 {
   margin-bottom: 2px;
 }
 
-/* ── Карта ─────────────────────────────────────────────────── */
 .footer-map {
   position: relative;
   border-radius: var(--r-card);
@@ -1323,38 +1417,38 @@ h3 {
     </div>
 
     <div class="symptoms-list">
-      <a href="#appointment" class="symptom reveal">
+      <button type="button" class="symptom reveal" data-symptom="nocturia">
         <span>Частое мочеиспускание, особенно ночью</span>
         <span>→</span>
-      </a>
-      <a href="#appointment" class="symptom reveal">
+      </button>
+      <button type="button" class="symptom reveal" data-symptom="pain">
         <span>Боль или жжение при мочеиспускании</span>
         <span>→</span>
-      </a>
-      <a href="#appointment" class="symptom reveal">
+      </button>
+      <button type="button" class="symptom reveal" data-symptom="blood">
         <span>Кровь в моче</span>
         <span>→</span>
-      </a>
-      <a href="#appointment" class="symptom reveal">
+      </button>
+      <button type="button" class="symptom reveal" data-symptom="lower-abdomen">
         <span>Тянущие боли внизу живота</span>
         <span>→</span>
-      </a>
-      <a href="#appointment" class="symptom reveal">
+      </button>
+      <button type="button" class="symptom reveal" data-symptom="ed">
         <span>Эректильная дисфункция</span>
         <span>→</span>
-      </a>
-      <a href="#appointment" class="symptom reveal">
+      </button>
+      <button type="button" class="symptom reveal" data-symptom="psa">
         <span>Повышенный ПСА</span>
         <span>→</span>
-      </a>
-      <a href="#appointment" class="symptom reveal">
+      </button>
+      <button type="button" class="symptom reveal" data-symptom="stones">
         <span>Камни в почках по УЗИ</span>
         <span>→</span>
-      </a>
-      <a href="#appointment" class="symptom reveal">
+      </button>
+      <button type="button" class="symptom reveal" data-symptom="checkup">
         <span>Плановый осмотр мужского здоровья</span>
         <span>→</span>
-      </a>
+      </button>
     </div>
   </div>
 </section>
@@ -1465,9 +1559,7 @@ h3 {
         </ul>
       </div>
     </div>
-    <!-- /.footer-grid -->
 
-    <!-- ── Контакты + Карта рядом ──────────────────────────── -->
     <div class="footer-contacts-map">
       <div class="footer-col">
         <h4>Контакты</h4>
@@ -1516,7 +1608,6 @@ h3 {
         </iframe>
       </div>
     </div>
-    <!-- /.footer-contacts-map -->
 
     <div class="footer-bottom">
       <span>© 2026 Дмитриев Владимир Валерьевич. Все права защищены.</span>
@@ -1531,6 +1622,40 @@ h3 {
     </p>
   </div>
 </footer>
+
+<!-- ======================= SYMPTOM MODAL ======================= -->
+<div class="modal" id="symptomModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel" role="document">
+    <button type="button" class="modal-close" aria-label="Закрыть" data-modal-close>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+
+    <span class="caption modal-eyebrow">Возможные причины</span>
+    <h3 class="modal-title" id="modalTitle"></h3>
+
+    <div class="modal-body">
+      <div class="modal-block">
+        <h4>Что это может быть</h4>
+        <p id="modalCauses"></p>
+      </div>
+      <div class="modal-block">
+        <h4>Чем это может грозить</h4>
+        <p id="modalRisks"></p>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <a href="#appointment" class="btn btn-sage" data-modal-close>
+        Записаться на приём
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button type="button" class="btn btn-ghost" data-modal-close>Позже</button>
+    </div>
+  </div>
+</div>
 
 <!-- ======================= SCRIPTS ======================= -->
 <script>
@@ -1602,6 +1727,111 @@ phoneInput?.addEventListener('input', (e) => {
   if (v.length >= 9) out += '-'   + v.slice(9, 11);
 
   e.target.value = out;
+});
+
+/* ── Модальное окно симптомов ─────────────────────────────── */
+const SYMPTOMS = {
+  nocturia: {
+    title: 'Частое мочеиспускание, особенно ночью',
+    causes: 'Аденома предстательной железы, хронический простатит, гиперактивный мочевой пузырь, инфекции мочевыводящих путей. Реже — сахарный диабет или неврологические нарушения.',
+    risks:  'Нарушение сна и хроническая усталость, прогрессирование аденомы вплоть до острой задержки мочи, когда требуется экстренная катетеризация.'
+  },
+  pain: {
+    title: 'Боль или жжение при мочеиспускании',
+    causes: 'Инфекции мочевыводящих путей (цистит, уретрит), простатит, камни в мочевом пузыре или уретре, реже — инфекции, передающиеся половым путём.',
+    risks:  'Переход в хроническую форму с постоянным дискомфортом, восходящая инфекция с развитием пиелонефрита, образование стриктур уретры.'
+  },
+  blood: {
+    title: 'Кровь в моче',
+    causes: 'Мочекаменная болезнь, инфекции, доброкачественная гиперплазия простаты, опухоли почки или мочевого пузыря, травмы. Даже однократный эпизод требует обследования.',
+    risks:  'Анемия, запущенная онкология — опухоль на ранней стадии лечится значительно проще, тампонада мочевого пузыря сгустками.'
+  },
+  'lower-abdomen': {
+    title: 'Тянущие боли внизу живота',
+    causes: 'Хронический простатит, цистит, камни в почках или мочеточнике, воспалительные процессы в малом тазу. У мужчин после 45 лет обязательно исключить патологию предстательной железы.',
+    risks:  'Хронизация воспаления с постоянным болевым синдромом, снижение качества жизни, пропуск онкологического процесса.'
+  },
+  ed: {
+    title: 'Эректильная дисфункция',
+    causes: 'Сосудистые нарушения (атеросклероз), гормональный дисбаланс (тестостерон), сахарный диабет, психогенные факторы, побочные эффекты лекарств.',
+    risks:  'Часто является ранним маркером сердечно-сосудистых заболеваний. Без лечения прогрессирует, влияет на отношения и качество жизни.'
+  },
+  psa: {
+    title: 'Повышенный ПСА',
+    causes: 'Рак предстательной железы, доброкачественная гиперплазия, простатит, недавние урологические манипуляции. Требует дообследования — МРТ простаты, при необходимости биопсия.',
+    risks:  'Рак простаты — одно из самых распространённых онкозаболеваний у мужчин. На ранней стадии излечим в 90%+ случаев, на поздней — только контроль.'
+  },
+  stones: {
+    title: 'Камни в почках по УЗИ',
+    causes: 'Мочекаменная болезнь — камни разного состава и размера. Даже бессимптомные камни опасны, когда начинают движение по мочеточнику.',
+    risks:  'Почечная колика, обструкция мочеточника и гидронефроз, хроническая болезнь почек, гнойный пиелонефрит.'
+  },
+  checkup: {
+    title: 'Плановый осмотр мужского здоровья',
+    causes: 'Профилактический приём включает: анализ на ПСА, УЗИ почек и предстательной железы, общий анализ мочи, осмотр уролога. Особенно важен после 40 лет.',
+    risks:  'Урологические заболевания часто протекают бессимптомно. Ранняя диагностика — залог успешного лечения и сохранения качества жизни.'
+  }
+};
+
+const symptomModal = document.getElementById('symptomModal');
+const modalTitle   = document.getElementById('modalTitle');
+const modalCauses  = document.getElementById('modalCauses');
+const modalRisks   = document.getElementById('modalRisks');
+let lastFocused = null;
+
+function openSymptomModal(key) {
+  const data = SYMPTOMS[key];
+  if (!data) return;
+
+  lastFocused = document.activeElement;
+  modalTitle.textContent  = data.title;
+  modalCauses.textContent = data.causes;
+  modalRisks.textContent  = data.risks;
+
+  symptomModal.classList.add('is-open');
+  symptomModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+
+  setTimeout(() => symptomModal.querySelector('.modal-close').focus(), 40);
+}
+
+function closeSymptomModal() {
+  if (!symptomModal.classList.contains('is-open')) return;
+  symptomModal.classList.remove('is-open');
+  symptomModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  if (lastFocused) lastFocused.focus();
+}
+
+document.querySelectorAll('[data-symptom]').forEach(btn => {
+  btn.addEventListener('click', () => openSymptomModal(btn.dataset.symptom));
+});
+
+document.querySelectorAll('[data-modal-close]').forEach(el => {
+  el.addEventListener('click', closeSymptomModal);
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeSymptomModal();
+});
+
+/* ── Focus trap внутри модалки ────────────────────────────── */
+symptomModal?.addEventListener('keydown', (e) => {
+  if (e.key !== 'Tab') return;
+  const focusables = symptomModal.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  if (!focusables.length) return;
+  const first = focusables[0];
+  const last  = focusables[focusables.length - 1];
+
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
 });
 </script>
 
