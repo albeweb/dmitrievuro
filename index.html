@@ -862,7 +862,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
         <button type="button" class="methods-arrow" id="methodsPrev" aria-label="Предыдущий метод">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
-        <div class="methods-dots" id="methodsDots" role="tablist" aria-label="Методы лечения"></div>
+        <div class="methods-dots" id="methodsDots" aria-label="Навигация по методам лечения"></div>
         <button type="button" class="methods-arrow" id="methodsNext" aria-label="Следующий метод">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
         </button>
@@ -1442,7 +1442,8 @@ symptomModal?.addEventListener('keydown', (e) => {
     const dot = document.createElement('button');
     dot.type = 'button';
     dot.className = 'methods-dot' + (i === 0 ? ' is-active' : '');
-    dot.setAttribute('aria-label', 'Метод ' + (i + 1));
+    const slideTitle = slides[i]?.querySelector('h3')?.textContent?.trim() || ('Метод ' + (i + 1));
+    dot.setAttribute('aria-label', 'Показать метод: ' + slideTitle);
     dot.addEventListener('click', () => goTo(i));
     dotsBox.appendChild(dot);
   }
@@ -1451,7 +1452,12 @@ symptomModal?.addEventListener('keydown', (e) => {
   function goTo(i) {
     current = Math.max(0, Math.min(i, total - 1));
     track.style.transform = 'translateX(-' + (current * 100) + '%)';
-    dots.forEach((d, idx) => d.classList.toggle('is-active', idx === current));
+    dots.forEach((d, idx) => {
+      const active = idx === current;
+      d.classList.toggle('is-active', active);
+      if (active) d.setAttribute('aria-current', 'true');
+      else d.removeAttribute('aria-current');
+    });
     if (prevBtn) prevBtn.disabled = current === 0;
     if (nextBtn) nextBtn.disabled = current === total - 1;
   }
