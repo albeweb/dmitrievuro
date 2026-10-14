@@ -888,9 +888,15 @@ h3 {
   padding-bottom: var(--sp-32);
 }
 
+/* Подвал — автоскейл по ширине экрана, отступы 40px по краям */
+.footer > .wrap {
+  max-width: 100%;
+  padding-inline: 40px;
+}
+
 .footer-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr));
   gap: clamp(32px, 4vw, 64px);
   padding-bottom: var(--sp-48);
   border-bottom: 1px solid var(--fog);
@@ -924,6 +930,16 @@ h3 {
 }
 .footer-col a:hover { color: var(--graphite); }
 
+/* ── Контакты + Карта рядом ──────────────────────────────── */
+.footer-contacts-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: clamp(32px, 4vw, 64px);
+  padding-block: var(--sp-48);
+  border-bottom: 1px solid var(--fog);
+  align-items: start;
+}
+
 .footer-contact {
   display: flex;
   gap: var(--sp-16);
@@ -934,6 +950,7 @@ h3 {
   line-height: 1.5;
   color: var(--ink);
 }
+.footer-contact:last-child { margin-bottom: 0; }
 .footer-contact::before {
   content: "";
   width: 5px; height: 5px;
@@ -949,6 +966,26 @@ h3 {
   text-transform: uppercase;
   color: var(--graphite);
   margin-bottom: 2px;
+}
+
+/* ── Карта ─────────────────────────────────────────────────── */
+.footer-map {
+  position: relative;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  border: 1px solid var(--fog);
+  background: var(--paper);
+  min-height: 380px;
+  height: 100%;
+  line-height: 0;
+}
+.footer-map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: saturate(.95) contrast(1.01);
 }
 
 .footer-bottom {
@@ -978,8 +1015,11 @@ h3 {
 @media (max-width: 900px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--sp-40); }
   .footer-brand { grid-column: span 2; }
+  .footer-contacts-map { grid-template-columns: 1fr; }
+  .footer-map { min-height: 320px; }
 }
 @media (max-width: 560px) {
+  .footer > .wrap { padding-inline: 40px; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-brand { grid-column: auto; }
 }
@@ -1379,7 +1419,11 @@ h3 {
           <li><a href="#services">Онкоурология</a></li>
         </ul>
       </div>
+    </div>
+    <!-- /.footer-grid -->
 
+    <!-- ── Контакты + Карта рядом ──────────────────────────── -->
+    <div class="footer-contacts-map">
       <div class="footer-col">
         <h4>Контакты</h4>
         <div class="footer-contact">
@@ -1413,7 +1457,21 @@ h3 {
           </div>
         </div>
       </div>
+
+      <div class="footer-map reveal">
+        <iframe
+          src="https://yandex.ru/map-widget/v1/?ll=30.232500%2C59.998900&z=16&pt=30.232500,59.998900,pm2rdm&mode=search&text=%D1%83%D0%BB.%20%D0%9E%D0%BF%D1%82%D0%B8%D0%BA%D0%BE%D0%B2%2C%2054%2C%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3"
+          width="100%"
+          height="100%"
+          frameborder="0"
+          allowfullscreen="true"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Карта — Санкт-Петербург, ул. Оптиков, д. 54">
+        </iframe>
+      </div>
     </div>
+    <!-- /.footer-contacts-map -->
 
     <div class="footer-bottom">
       <span>© 2026 Дмитриев Владимир Валерьевич. Все права защищены.</span>
