@@ -363,6 +363,10 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .nav-mobile li { border-bottom: 1px solid var(--fog); }
 .nav-mobile a { display: block; padding: var(--sp-16) 0; font-size: var(--fs-sub); letter-spacing: var(--track-sub); color: var(--ink); }
 @media (max-width: 900px) { .nav-links, .nav-phone { display: none; } .nav-burger { display: grid; } .nav-mobile { display: block; } }
+@media (max-width: 560px) {
+  .nav .nav-brand { font-size: 1rem; }
+  .nav .nav-brand span { font-size: 0.625rem; letter-spacing: 0.04em; margin-top: 2px; }
+}
 
 .btn { display: inline-flex; align-items: center; gap: var(--sp-8); padding: 12px 20px; font-family: var(--font-sans); font-size: var(--fs-body); font-weight: 500; letter-spacing: var(--track-body); border-radius: var(--r-btn); transition: background .25s ease, transform .2s ease; white-space: nowrap; }
 .btn-sage { background: var(--sage); color: var(--ink); }
