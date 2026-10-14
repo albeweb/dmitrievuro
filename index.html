@@ -6,7 +6,6 @@
 <title>Дмитриев Владимир Валерьевич — врач-уролог | Санкт-Петербург</title>
 <meta name="description" content="Врач-уролог Дмитриев Владимир Валерьевич. Стаж более 12 лет. Диагностика и лечение простатита, аденомы, мочекаменной болезни, андрология. СПб, ул. Оптиков, 54. Запись по телефону 648-24-08." />
 
-<!-- Favicon — зелёный квадрат с буквой D -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%23c8dfaa'/%3E%3Ctext%20x='32'%20y='33'%20font-family='Georgia,serif'%20font-size='46'%20font-weight='600'%20fill='%23ffffff'%20text-anchor='middle'%20dominant-baseline='central'%3ED%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%23c8dfaa'/%3E%3Ctext%20x='32'%20y='33'%20font-family='Georgia,serif'%20font-size='46'%20font-weight='600'%20fill='%23ffffff'%20text-anchor='middle'%20dominant-baseline='central'%3ED%3C/text%3E%3C/svg%3E">
 
@@ -27,11 +26,11 @@
   --silver:       #cbcbcb;
   --sky:          #97cde5;
   --sage:         #c8dfaa;
+  --albe:         #F5B700;
 
   --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
   --font-serif: 'Source Serif 4', Georgia, serif;
 
-  /* Type scale — Alden Major Second 1.125 */
   --fs-caption: 0.75rem;
   --fs-sm:      0.875rem;
   --fs-body:    1rem;
@@ -71,7 +70,7 @@
 }
 
 /* ================================================================
-   CUSTOM SCROLLBAR — узкий, в цвете sage
+   CUSTOM SCROLLBAR
 ================================================================ */
 html {
   scrollbar-width: thin;
@@ -410,7 +409,7 @@ h3 {
 }
 
 /* ================================================================
-   APPROACH — три принципа
+   APPROACH
 ================================================================ */
 .approach-inner {
   display: grid;
@@ -1140,6 +1139,24 @@ h3 {
 }
 .footer-bottom a:hover { color: var(--ink); }
 
+/* ── ALBE DIGITAL ─────────────────────────────────────────── */
+.footer-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-caption);
+  letter-spacing: var(--track-caption);
+  color: var(--ink);
+  transition: color .2s ease;
+}
+.footer-credit .albe-digital {
+  font-weight: 600;
+  color: var(--albe);
+  letter-spacing: 0.05em;
+  transition: filter .2s ease;
+}
+.footer-credit:hover .albe-digital { filter: brightness(1.08); }
+
 .footer-legal {
   margin-top: var(--sp-32);
   padding-top: var(--sp-32);
@@ -1611,6 +1628,9 @@ h3 {
 
     <div class="footer-bottom">
       <span>© 2026 Дмитриев Владимир Валерьевич. Все права защищены.</span>
+      <a href="https://albe.su" target="_blank" rel="noopener" class="footer-credit">
+        Сайт разработан в ALBE <span class="albe-digital">DIGITAL</span>
+      </a>
       <span><a href="#">Политика конфиденциальности</a> · <a href="#">Пользовательское соглашение</a></span>
     </div>
 
