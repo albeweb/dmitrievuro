@@ -517,7 +517,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 @media (max-width: 900px) { .appointment-inner { grid-template-columns: 1fr; } .appointment-info { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .appointment-info { grid-template-columns: 1fr; } }
 
-.form { background: var(--paper); border: 1px solid var(--fog); border-radius: var(--r-card); padding: clamp(24px, 3vw, 40px); display: grid; gap: var(--sp-24); }
+.form { background: var(--paper); border: 1px solid var(--fog); border-radius: var(--r-card); padding: clamp(24px, 3vw, 40px); display: grid; gap: var(--sp-24); position: relative; }
 .form-field { display: grid; gap: var(--sp-8); }
 .form-field label { font-size: var(--fs-caption); letter-spacing: var(--track-caption); text-transform: uppercase; color: var(--graphite); }
 .form-field input, .form-field select, .form-field textarea { width: 100%; padding: 12px 0; font-family: var(--font-sans); font-size: var(--fs-body); letter-spacing: var(--track-body); color: var(--ink); background: transparent; border: none; border-bottom: 1px solid var(--fog); border-radius: 0; outline: none; transition: border-color .25s ease; appearance: none; }
@@ -531,6 +531,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .form-submit:disabled { opacity: .6; cursor: default; transform: none; }
 .form-note { font-size: var(--fs-caption); letter-spacing: var(--track-caption); color: var(--graphite); line-height: 1.5; text-align: center; }
 .form-note a { text-decoration: underline; text-underline-offset: 3px; }
+.form-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 
 @media (max-width: 560px) {
   .form { padding: var(--sp-24) var(--sp-16); border-radius: 12px; }
@@ -1111,6 +1112,9 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
     </div>
 
     <form class="form reveal" id="appointmentForm" novalidate aria-label="Форма записи на приём к урологу">
+      <!-- Honeypot: скрытое поле для защиты от спама -->
+      <input type="text" name="website" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
       <div class="form-field">
         <label for="name">Ваше имя</label>
         <input type="text" id="name" name="name" placeholder="Как к вам обращаться" required autocomplete="name" />
@@ -1331,6 +1335,9 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 </div>
 
 <script>
+/* ============================================================
+   Мобильное меню
+   ============================================================ */
 const burger = document.getElementById('navBurger');
 const mobile = document.getElementById('navMobile');
 burger?.addEventListener('click', () => {
@@ -1344,6 +1351,9 @@ mobile?.querySelectorAll('a').forEach(a =>
   })
 );
 
+/* ============================================================
+   Появление блоков при скролле
+   ============================================================ */
 const revealEls = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window) {
   const io = new IntersectionObserver((entries) => {
@@ -1359,22 +1369,54 @@ if ('IntersectionObserver' in window) {
   revealEls.forEach((el) => el.classList.add('is-visible'));
 }
 
+/* ============================================================
+   ОТПРАВКА ФОРМЫ В TELEGRAM через Cloudflare Worker
+   ============================================================ */
 const form = document.getElementById('appointmentForm');
-form?.addEventListener('submit', (e) => {
+form?.addEventListener('submit', async (e) => {
   e.preventDefault();
+
   const name  = form.querySelector('#name').value.trim();
   const phone = form.querySelector('#phone').value.trim();
-  if (!name || !phone) { alert('Пожалуйста, заполните имя и телефон.'); return; }
+
+  if (!name || !phone) {
+    alert('Пожалуйста, заполните имя и телефон.');
+    return;
+  }
+
   const btn = form.querySelector('.form-submit');
-  btn.textContent = 'Спасибо! Мы свяжемся с вами';
+  const originalText = btn.textContent;
   btn.disabled = true;
-  setTimeout(() => {
+  btn.textContent = 'Отправляем…';
+
+  try {
+    const res = await fetch('https://form.dmitriev-uro.ru/', {
+      method: 'POST',
+      body: new FormData(form),
+    });
+
+    if (!res.ok) throw new Error('Server error ' + res.status);
+
+    btn.textContent = 'Спасибо! Мы свяжемся с вами';
     form.reset();
-    btn.textContent = 'Записаться на приём';
-    btn.disabled = false;
-  }, 4000);
+
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 5000);
+  } catch (err) {
+    console.error('Отправка формы:', err);
+    btn.textContent = 'Ошибка. Позвоните: +7 (812) 648-24-08';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 6000);
+  }
 });
 
+/* ============================================================
+   Маска телефона
+   ============================================================ */
 const phoneInput = document.getElementById('phone');
 phoneInput?.addEventListener('input', (e) => {
   let v = e.target.value.replace(/\D/g, '');
@@ -1389,6 +1431,9 @@ phoneInput?.addEventListener('input', (e) => {
   e.target.value = out;
 });
 
+/* ============================================================
+   Модалка «Возможные причины»
+   ============================================================ */
 const SYMPTOMS = {
   nocturia: {
     title: 'Частое мочеиспускание, особенно ночью',
@@ -1478,12 +1523,15 @@ symptomModal?.addEventListener('keydown', (e) => {
   else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 });
 
+/* ============================================================
+   Карусель методов лечения
+   ============================================================ */
 (function () {
-  const track   = document.getElementById('methodsTrack');
+  const track    = document.getElementById('methodsTrack');
   const viewport = document.getElementById('methodsViewport');
-  const dotsBox = document.getElementById('methodsDots');
-  const prevBtn = document.getElementById('methodsPrev');
-  const nextBtn = document.getElementById('methodsNext');
+  const dotsBox  = document.getElementById('methodsDots');
+  const prevBtn  = document.getElementById('methodsPrev');
+  const nextBtn  = document.getElementById('methodsNext');
   if (!track || !viewport) return;
 
   const slides = track.querySelectorAll('.method-slide');
