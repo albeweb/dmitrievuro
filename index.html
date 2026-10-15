@@ -1390,7 +1390,7 @@ form?.addEventListener('submit', async (e) => {
   btn.textContent = 'Отправляем…';
 
   try {
-    const res = await fetch('https://form.dmitriev-uro.ru/', {
+    const res = await fetch('https://uro-form-worker.faralenatmir.workers.dev/', {
       method: 'POST',
       body: new FormData(form),
     });
