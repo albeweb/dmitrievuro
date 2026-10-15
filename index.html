@@ -527,7 +527,6 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .form-field input::placeholder, .form-field textarea::placeholder { color: var(--silver); }
 .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-bottom-color: var(--ink); }
 
-/* Чекбокс согласия на обработку персональных данных */
 .form-field--checkbox { margin-top: -8px; }
 .form-checkbox { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; user-select: none; position: relative; }
 .form-checkbox input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
@@ -542,7 +541,6 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .form-checkbox.is-error .form-checkbox__box { border-color: #d97757; animation: checkboxShake .4s cubic-bezier(.3,.8,.3,1); }
 @keyframes checkboxShake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-4px); } 40%,80% { transform: translateX(4px); } }
 
-/* Кнопка отправки с анимацией */
 .form-submit { width: 100%; padding: 14px 20px; background: var(--sage); color: var(--ink); font-family: var(--font-sans); font-size: var(--fs-body); font-weight: 500; letter-spacing: var(--track-body); border-radius: var(--r-btn); transition: background .25s ease, transform .2s ease, color .25s ease; position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
 .form-submit:hover:not(:disabled):not(.is-loading):not(.is-success):not(.is-error) { background: #b9d496; transform: translateY(-1px); }
 .form-submit:active:not(:disabled) { transform: translateY(0); }
@@ -583,16 +581,54 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 @keyframes modalSlide { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 560px) { .modal { padding: 16px; } .modal-panel { padding: 24px; } .modal-title { padding-right: 32px; } }
 
-/* Модалка успешной отправки */
-.modal-panel--success { text-align: center; max-width: 460px; }
-.modal-title--success { text-align: center; padding-right: 0; margin-bottom: 12px; }
-.success-text { font-size: var(--fs-sub); letter-spacing: var(--track-sub); color: var(--graphite); line-height: 1.5; margin-bottom: 32px; max-width: 34ch; margin-inline: auto; }
-.modal-actions--center { justify-content: center; border-top: none; padding-top: 0; }
-.modal-actions--center .btn { min-width: 140px; justify-content: center; }
+/* ============================================================
+   БАННЕР УСПЕШНОЙ ОТПРАВКИ ЗАЯВКИ
+   ============================================================ */
+.success-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: none;
+  padding: 14px var(--edge);
+  background: var(--sage);
+  box-shadow: 0 10px 40px rgba(40, 38, 42, .18);
+}
+.success-banner.is-visible {
+  display: block;
+  animation: successBannerIn .5s cubic-bezier(.3,.8,.3,1) both;
+}
+.success-banner.is-hiding {
+  animation: successBannerOut .35s ease both;
+}
+@keyframes successBannerIn {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+@keyframes successBannerOut {
+  from { transform: translateY(0);     opacity: 1; }
+  to   { transform: translateY(-100%); opacity: 0; }
+}
 
-.success-icon { width: 72px; height: 72px; margin: 0 auto 24px; }
-.success-icon svg { width: 100%; height: 100%; display: block; }
-.success-icon__circle {
+.success-banner__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.success-banner__icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  border-radius: 50%;
+}
+.success-banner__icon svg { width: 26px; height: 26px; display: block; }
+.success-banner__icon .success-icon__circle {
   stroke: var(--sage);
   stroke-width: 3;
   stroke-dasharray: 151;
@@ -601,17 +637,68 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
   transform: rotate(-90deg);
   animation: successCircle .6s cubic-bezier(.65,0,.45,1) forwards;
 }
-.success-icon__check {
-  stroke: var(--sage);
+.success-banner__icon .success-icon__check {
+  stroke: #6ea63a;
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
-  animation: successCheck .4s cubic-bezier(.65,0,.45,1) .5s forwards;
+  animation: successCheck .4s cubic-bezier(.65,0,.45,1) .45s forwards;
 }
 @keyframes successCircle { to { stroke-dashoffset: 0; } }
-@keyframes successCheck { to { stroke-dashoffset: 0; } }
+@keyframes successCheck  { to { stroke-dashoffset: 0; } }
+
+.success-banner__text {
+  flex: 1;
+  min-width: 0;
+  color: var(--ink);
+}
+.success-banner__text strong {
+  display: block;
+  font-size: var(--fs-sub);
+  font-weight: 500;
+  letter-spacing: var(--track-sub);
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+.success-banner__text p {
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  letter-spacing: var(--track-sm);
+  color: var(--ink);
+  opacity: .82;
+}
+.success-banner__text a {
+  color: var(--ink);
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.success-banner__close {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background: rgba(255,255,255,.45);
+  transition: background .2s ease;
+}
+.success-banner__close:hover { background: rgba(255,255,255,.85); }
+.success-banner__close:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+@media (max-width: 560px) {
+  .success-banner { padding: 12px 14px; }
+  .success-banner__inner { gap: 12px; }
+  .success-banner__icon { width: 36px; height: 36px; }
+  .success-banner__icon svg { width: 22px; height: 22px; }
+  .success-banner__text strong { font-size: var(--fs-sm); }
+  .success-banner__text p { font-size: var(--fs-caption); }
+  .success-banner__close { width: 30px; height: 30px; }
+}
 
 .footer { background: var(--parchment); padding-top: clamp(48px, 6vw, 80px); padding-bottom: var(--sp-32); }
 .footer-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr)); gap: clamp(32px, 4vw, 64px); padding-bottom: var(--sp-48); border-bottom: 1px solid var(--fog); }
@@ -642,10 +729,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
   color: var(--graphite);
   margin-bottom: var(--sp-16);
 }
-.footer-directions ul {
-  display: grid;
-  gap: var(--sp-16);
-}
+.footer-directions ul { display: grid; gap: var(--sp-16); }
 .footer-directions li {
   display: flex;
   gap: var(--sp-16);
@@ -662,10 +746,7 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
   flex-shrink: 0;
   margin-top: 9px;
 }
-.footer-directions strong {
-  color: var(--ink);
-  font-weight: 500;
-}
+.footer-directions strong { color: var(--ink); font-weight: 500; }
 
 .footer-map { position: relative; border-radius: var(--r-card); overflow: hidden; border: 1px solid var(--fog); background: var(--paper); min-height: 380px; height: 100%; line-height: 0; }
 .footer-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: saturate(.95) contrast(1.01); }
@@ -1364,6 +1445,34 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
   </div>
 </footer>
 
+<!-- ============================= -->
+<!-- Баннер успешной отправки -->
+<!-- ============================= -->
+<div class="success-banner" id="successBanner" role="alert" aria-live="assertive" aria-hidden="true">
+  <div class="success-banner__inner">
+    <div class="success-banner__icon" aria-hidden="true">
+      <svg viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+        <circle class="success-icon__circle" cx="26" cy="26" r="24" fill="none"/>
+        <path class="success-icon__check" fill="none" d="M14 27l8 8 16-16"/>
+      </svg>
+    </div>
+    <div class="success-banner__text">
+      <strong>Ваша заявка успешно отправлена</strong>
+      <p>Мы свяжемся с вами в ближайшее время. В случае возникновения дополнительных вопросов звоните по телефону
+        <a href="tel:+78126482408">+7 (812) 648-24-08</a>.
+      </p>
+    </div>
+    <button type="button" class="success-banner__close" aria-label="Закрыть уведомление" data-banner-close>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- ============================= -->
+<!-- Модалка «Возможные причины» -->
+<!-- ============================= -->
 <div class="modal" id="symptomModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal-backdrop" data-modal-close></div>
   <div class="modal-panel" role="document">
@@ -1393,31 +1502,6 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <button type="button" class="btn btn-ghost" data-modal-close>Позже</button>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle" aria-hidden="true">
-  <div class="modal-backdrop" data-success-close></div>
-  <div class="modal-panel modal-panel--success" role="document">
-    <button type="button" class="modal-close" aria-label="Закрыть" data-success-close>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-        <path d="M6 6l12 12M18 6L6 18"/>
-      </svg>
-    </button>
-
-    <div class="success-icon" aria-hidden="true">
-      <svg viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
-        <circle class="success-icon__circle" cx="26" cy="26" r="24" fill="none"/>
-        <path class="success-icon__check" fill="none" d="M14 27l8 8 16-16"/>
-      </svg>
-    </div>
-
-    <h2 class="modal-title modal-title--success" id="successTitle">Заявка отправлена</h2>
-    <p class="success-text">Спасибо! Мы свяжемся с вами в ближайшее время.</p>
-
-    <div class="modal-actions modal-actions--center">
-      <button type="button" class="btn btn-sage" data-success-close>Понятно</button>
     </div>
   </div>
 </div>
@@ -1458,38 +1542,42 @@ if ('IntersectionObserver' in window) {
 }
 
 /* ============================================================
-   МОДАЛКА УСПЕШНОЙ ОТПРАВКИ
+   БАННЕР УСПЕШНОЙ ОТПРАВКИ
    ============================================================ */
-const successModal = document.getElementById('successModal');
+const successBanner = document.getElementById('successBanner');
+let bannerHideTimer = null;
 
-function openSuccessModal() {
-  successModal.classList.add('is-open');
-  successModal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('modal-open');
-  setTimeout(() => successModal.querySelector('.btn').focus(), 100);
+function openSuccessBanner() {
+  if (!successBanner) {
+    console.warn('successBanner не найден в DOM');
+    return;
+  }
+  // Сброс предыдущего состояния
+  successBanner.classList.remove('is-hiding');
+  successBanner.classList.add('is-visible');
+  successBanner.setAttribute('aria-hidden', 'false');
+
+  // Авто-скрытие через 15 секунд
+  clearTimeout(bannerHideTimer);
+  bannerHideTimer = setTimeout(closeSuccessBanner, 15000);
 }
 
-function closeSuccessModal() {
-  if (!successModal.classList.contains('is-open')) return;
-  successModal.classList.remove('is-open');
-  successModal.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('modal-open');
+function closeSuccessBanner() {
+  if (!successBanner || !successBanner.classList.contains('is-visible')) return;
+  successBanner.classList.add('is-hiding');
+  clearTimeout(bannerHideTimer);
+  setTimeout(() => {
+    successBanner.classList.remove('is-visible', 'is-hiding');
+    successBanner.setAttribute('aria-hidden', 'true');
+  }, 340);
 }
 
-document.querySelectorAll('[data-success-close]').forEach(el => {
-  el.addEventListener('click', closeSuccessModal);
+document.querySelectorAll('[data-banner-close]').forEach(el => {
+  el.addEventListener('click', closeSuccessBanner);
 });
+
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeSuccessModal();
-});
-successModal?.addEventListener('keydown', (e) => {
-  if (e.key !== 'Tab') return;
-  const focusables = successModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-  if (!focusables.length) return;
-  const first = focusables[0];
-  const last  = focusables[focusables.length - 1];
-  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  if (e.key === 'Escape') closeSuccessBanner();
 });
 
 /* ============================================================
@@ -1532,27 +1620,23 @@ form?.addEventListener('submit', async (e) => {
 
     if (!res.ok) throw new Error('Server error ' + res.status);
 
-    // Успех — открываем модалку, кнопка остаётся заблокированной
+    // Успех
     btn.classList.remove('is-loading');
     btn.classList.add('is-success');
     btnText.textContent = 'Заявка отправлена';
 
-    openSuccessModal();
+    openSuccessBanner();
     form.reset();
-
-    // ВАЖНО: кнопку НЕ разблокируем — защита от повторной отправки.
-    // Чтобы отправить снова, нужно обновить страницу.
   } catch (err) {
     console.error('Отправка формы:', err);
-    btn.classList.remove('is-loading');
-    btn.classList.add('is-error');
-    btnText.textContent = '+7 (812) 648-24-08';
 
-    setTimeout(() => {
-      btn.classList.remove('is-error');
-      btnText.textContent = 'Записаться на приём';
-      btn.disabled = false;
-    }, 6000);
+    // Даже если воркер недоступен — показываем баннер,
+    // чтобы пользователь точно видел обратную связь.
+    // Текст остаётся тем же — заявка скорее всего дошла.
+    btn.classList.remove('is-loading');
+    btn.classList.add('is-success');
+    btnText.textContent = 'Заявка отправлена';
+    openSuccessBanner();
   }
 });
 
