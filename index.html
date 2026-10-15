@@ -546,14 +546,13 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .form-submit { width: 100%; padding: 14px 20px; background: var(--sage); color: var(--ink); font-family: var(--font-sans); font-size: var(--fs-body); font-weight: 500; letter-spacing: var(--track-body); border-radius: var(--r-btn); transition: background .25s ease, transform .2s ease, color .25s ease; position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
 .form-submit:hover:not(:disabled):not(.is-loading):not(.is-success):not(.is-error) { background: #b9d496; transform: translateY(-1px); }
 .form-submit:active:not(:disabled) { transform: translateY(0); }
-.form-submit:disabled { cursor: default; }
+.form-submit:disabled { cursor: default; opacity: .85; }
 .form-submit__spinner { width: 15px; height: 15px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; animation: spin .75s linear infinite; display: none; flex-shrink: 0; }
 .form-submit.is-loading { cursor: wait; background: var(--sage); }
 .form-submit.is-loading .form-submit__spinner { display: inline-block; }
-.form-submit.is-success { background: var(--sage); animation: submitPulse .6s cubic-bezier(.3,1.4,.5,1); }
+.form-submit.is-success { background: var(--sage); }
 .form-submit.is-error { background: var(--parchment); color: var(--ink); }
 @keyframes spin { to { transform: rotate(360deg); } }
-@keyframes submitPulse { 0% { transform: scale(1); } 40% { transform: scale(1.03); } 100% { transform: scale(1); } }
 
 .form-note { font-size: var(--fs-caption); letter-spacing: var(--track-caption); color: var(--graphite); line-height: 1.5; text-align: center; }
 .form-note a { text-decoration: underline; text-underline-offset: 3px; }
@@ -583,6 +582,36 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes modalSlide { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 560px) { .modal { padding: 16px; } .modal-panel { padding: 24px; } .modal-title { padding-right: 32px; } }
+
+/* Модалка успешной отправки */
+.modal-panel--success { text-align: center; max-width: 460px; }
+.modal-title--success { text-align: center; padding-right: 0; margin-bottom: 12px; }
+.success-text { font-size: var(--fs-sub); letter-spacing: var(--track-sub); color: var(--graphite); line-height: 1.5; margin-bottom: 32px; max-width: 34ch; margin-inline: auto; }
+.modal-actions--center { justify-content: center; border-top: none; padding-top: 0; }
+.modal-actions--center .btn { min-width: 140px; justify-content: center; }
+
+.success-icon { width: 72px; height: 72px; margin: 0 auto 24px; }
+.success-icon svg { width: 100%; height: 100%; display: block; }
+.success-icon__circle {
+  stroke: var(--sage);
+  stroke-width: 3;
+  stroke-dasharray: 151;
+  stroke-dashoffset: 151;
+  transform-origin: 50% 50%;
+  transform: rotate(-90deg);
+  animation: successCircle .6s cubic-bezier(.65,0,.45,1) forwards;
+}
+.success-icon__check {
+  stroke: var(--sage);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: successCheck .4s cubic-bezier(.65,0,.45,1) .5s forwards;
+}
+@keyframes successCircle { to { stroke-dashoffset: 0; } }
+@keyframes successCheck { to { stroke-dashoffset: 0; } }
 
 .footer { background: var(--parchment); padding-top: clamp(48px, 6vw, 80px); padding-bottom: var(--sp-32); }
 .footer-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr)); gap: clamp(32px, 4vw, 64px); padding-bottom: var(--sp-48); border-bottom: 1px solid var(--fog); }
@@ -1368,6 +1397,31 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
   </div>
 </div>
 
+<div class="modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle" aria-hidden="true">
+  <div class="modal-backdrop" data-success-close></div>
+  <div class="modal-panel modal-panel--success" role="document">
+    <button type="button" class="modal-close" aria-label="Закрыть" data-success-close>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+
+    <div class="success-icon" aria-hidden="true">
+      <svg viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+        <circle class="success-icon__circle" cx="26" cy="26" r="24" fill="none"/>
+        <path class="success-icon__check" fill="none" d="M14 27l8 8 16-16"/>
+      </svg>
+    </div>
+
+    <h2 class="modal-title modal-title--success" id="successTitle">Заявка отправлена</h2>
+    <p class="success-text">Спасибо! Мы свяжемся с вами в ближайшее время.</p>
+
+    <div class="modal-actions modal-actions--center">
+      <button type="button" class="btn btn-sage" data-success-close>Понятно</button>
+    </div>
+  </div>
+</div>
+
 <script>
 /* ============================================================
    Мобильное меню
@@ -1404,6 +1458,41 @@ if ('IntersectionObserver' in window) {
 }
 
 /* ============================================================
+   МОДАЛКА УСПЕШНОЙ ОТПРАВКИ
+   ============================================================ */
+const successModal = document.getElementById('successModal');
+
+function openSuccessModal() {
+  successModal.classList.add('is-open');
+  successModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  setTimeout(() => successModal.querySelector('.btn').focus(), 100);
+}
+
+function closeSuccessModal() {
+  if (!successModal.classList.contains('is-open')) return;
+  successModal.classList.remove('is-open');
+  successModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+}
+
+document.querySelectorAll('[data-success-close]').forEach(el => {
+  el.addEventListener('click', closeSuccessModal);
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeSuccessModal();
+});
+successModal?.addEventListener('keydown', (e) => {
+  if (e.key !== 'Tab') return;
+  const focusables = successModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  if (!focusables.length) return;
+  const first = focusables[0];
+  const last  = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+
+/* ============================================================
    ОТПРАВКА ФОРМЫ В TELEGRAM через Cloudflare Worker
    ============================================================ */
 const form = document.getElementById('appointmentForm');
@@ -1429,7 +1518,6 @@ form?.addEventListener('submit', async (e) => {
 
   const btn = form.querySelector('.form-submit');
   const btnText = form.querySelector('.form-submit__text');
-  const originalText = 'Записаться на приём';
 
   btn.disabled = true;
   btn.classList.remove('is-success', 'is-error');
@@ -1444,16 +1532,16 @@ form?.addEventListener('submit', async (e) => {
 
     if (!res.ok) throw new Error('Server error ' + res.status);
 
+    // Успех — открываем модалку, кнопка остаётся заблокированной
     btn.classList.remove('is-loading');
     btn.classList.add('is-success');
-    btnText.textContent = 'Спасибо! Мы свяжемся с вами';
+    btnText.textContent = 'Заявка отправлена';
+
+    openSuccessModal();
     form.reset();
 
-    setTimeout(() => {
-      btn.classList.remove('is-success');
-      btnText.textContent = originalText;
-      btn.disabled = false;
-    }, 5000);
+    // ВАЖНО: кнопку НЕ разблокируем — защита от повторной отправки.
+    // Чтобы отправить снова, нужно обновить страницу.
   } catch (err) {
     console.error('Отправка формы:', err);
     btn.classList.remove('is-loading');
@@ -1462,7 +1550,7 @@ form?.addEventListener('submit', async (e) => {
 
     setTimeout(() => {
       btn.classList.remove('is-error');
-      btnText.textContent = originalText;
+      btnText.textContent = 'Записаться на приём';
       btn.disabled = false;
     }, 6000);
   }
