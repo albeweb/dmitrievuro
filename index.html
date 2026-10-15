@@ -526,9 +526,35 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
 .form-field textarea { resize: vertical; min-height: 72px; line-height: 1.5; }
 .form-field input::placeholder, .form-field textarea::placeholder { color: var(--silver); }
 .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-bottom-color: var(--ink); }
-.form-submit { width: 100%; padding: 14px 20px; background: var(--sage); color: var(--ink); font-family: var(--font-sans); font-size: var(--fs-body); font-weight: 500; letter-spacing: var(--track-body); border-radius: var(--r-btn); transition: background .25s ease, transform .2s ease; }
-.form-submit:hover { background: #b9d496; transform: translateY(-1px); }
-.form-submit:disabled { opacity: .6; cursor: default; transform: none; }
+
+/* Чекбокс согласия на обработку персональных данных */
+.form-field--checkbox { margin-top: -8px; }
+.form-checkbox { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; user-select: none; position: relative; }
+.form-checkbox input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.form-checkbox__box { flex-shrink: 0; width: 20px; height: 20px; margin-top: 1px; border: 1.5px solid var(--silver); border-radius: 5px; background: var(--paper); display: grid; place-items: center; transition: background .2s ease, border-color .2s ease; }
+.form-checkbox__box::after { content: ""; width: 12px; height: 12px; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2328262a' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12l5 5L20 7'/></svg>"); background-size: contain; background-repeat: no-repeat; background-position: center; opacity: 0; transform: scale(.4); transition: opacity .2s ease, transform .25s cubic-bezier(.3,1.4,.5,1); }
+.form-checkbox input:checked + .form-checkbox__box { background: var(--sage); border-color: var(--sage); }
+.form-checkbox input:checked + .form-checkbox__box::after { opacity: 1; transform: scale(1); }
+.form-checkbox input:focus-visible + .form-checkbox__box { outline: 2px solid var(--sage); outline-offset: 2px; }
+.form-checkbox__text { font-size: var(--fs-sm); line-height: 1.5; letter-spacing: var(--track-sm); color: var(--graphite); }
+.form-checkbox__text a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.form-checkbox__text a:hover { color: var(--graphite); }
+.form-checkbox.is-error .form-checkbox__box { border-color: #d97757; animation: checkboxShake .4s cubic-bezier(.3,.8,.3,1); }
+@keyframes checkboxShake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-4px); } 40%,80% { transform: translateX(4px); } }
+
+/* Кнопка отправки с анимацией */
+.form-submit { width: 100%; padding: 14px 20px; background: var(--sage); color: var(--ink); font-family: var(--font-sans); font-size: var(--fs-body); font-weight: 500; letter-spacing: var(--track-body); border-radius: var(--r-btn); transition: background .25s ease, transform .2s ease, color .25s ease; position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+.form-submit:hover:not(:disabled):not(.is-loading):not(.is-success):not(.is-error) { background: #b9d496; transform: translateY(-1px); }
+.form-submit:active:not(:disabled) { transform: translateY(0); }
+.form-submit:disabled { cursor: default; }
+.form-submit__spinner { width: 15px; height: 15px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; animation: spin .75s linear infinite; display: none; flex-shrink: 0; }
+.form-submit.is-loading { cursor: wait; background: var(--sage); }
+.form-submit.is-loading .form-submit__spinner { display: inline-block; }
+.form-submit.is-success { background: var(--sage); animation: submitPulse .6s cubic-bezier(.3,1.4,.5,1); }
+.form-submit.is-error { background: var(--parchment); color: var(--ink); }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes submitPulse { 0% { transform: scale(1); } 40% { transform: scale(1.03); } 100% { transform: scale(1); } }
+
 .form-note { font-size: var(--fs-caption); letter-spacing: var(--track-caption); color: var(--graphite); line-height: 1.5; text-align: center; }
 .form-note a { text-decoration: underline; text-underline-offset: 3px; }
 .form-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
@@ -1142,11 +1168,19 @@ h3 { font-size: var(--fs-h-sm); letter-spacing: var(--track-h-sm); font-weight: 
         <textarea id="comment" name="comment" placeholder="Кратко опишите жалобы или удобное время"></textarea>
       </div>
 
-      <button type="submit" class="form-submit">Записаться на приём</button>
+      <!-- Чекбокс согласия на обработку персональных данных -->
+      <div class="form-field form-field--checkbox">
+        <label class="form-checkbox">
+          <input type="checkbox" id="consent" name="consent" required />
+          <span class="form-checkbox__box" aria-hidden="true"></span>
+          <span class="form-checkbox__text">Согласен с <a href="privacy.html" target="_blank" rel="noopener">политикой обработки персональных данных</a></span>
+        </label>
+      </div>
 
-      <p class="form-note">
-        Нажимая кнопку, вы соглашаетесь с <a href="privacy.html">политикой обработки персональных данных</a>.
-      </p>
+      <button type="submit" class="form-submit">
+        <span class="form-submit__spinner" aria-hidden="true"></span>
+        <span class="form-submit__text">Записаться на приём</span>
+      </button>
     </form>
 
     <div class="appointment-info reveal">
@@ -1378,16 +1412,29 @@ form?.addEventListener('submit', async (e) => {
 
   const name  = form.querySelector('#name').value.trim();
   const phone = form.querySelector('#phone').value.trim();
+  const consentInput = form.querySelector('#consent');
+  const consentWrap  = form.querySelector('.form-checkbox');
 
   if (!name || !phone) {
     alert('Пожалуйста, заполните имя и телефон.');
     return;
   }
 
+  if (!consentInput.checked) {
+    consentWrap.classList.add('is-error');
+    consentInput.focus();
+    setTimeout(() => consentWrap.classList.remove('is-error'), 1200);
+    return;
+  }
+
   const btn = form.querySelector('.form-submit');
-  const originalText = btn.textContent;
+  const btnText = form.querySelector('.form-submit__text');
+  const originalText = 'Записаться на приём';
+
   btn.disabled = true;
-  btn.textContent = 'Отправляем…';
+  btn.classList.remove('is-success', 'is-error');
+  btn.classList.add('is-loading');
+  btnText.textContent = 'Отправляем…';
 
   try {
     const res = await fetch('https://uro-form-worker.faralenatmir.workers.dev/', {
@@ -1397,18 +1444,25 @@ form?.addEventListener('submit', async (e) => {
 
     if (!res.ok) throw new Error('Server error ' + res.status);
 
-    btn.textContent = 'Спасибо! Мы свяжемся с вами';
+    btn.classList.remove('is-loading');
+    btn.classList.add('is-success');
+    btnText.textContent = 'Спасибо! Мы свяжемся с вами';
     form.reset();
 
     setTimeout(() => {
-      btn.textContent = originalText;
+      btn.classList.remove('is-success');
+      btnText.textContent = originalText;
       btn.disabled = false;
     }, 5000);
   } catch (err) {
     console.error('Отправка формы:', err);
-    btn.textContent = 'Ошибка. Позвоните: +7 (812) 648-24-08';
+    btn.classList.remove('is-loading');
+    btn.classList.add('is-error');
+    btnText.textContent = '+7 (812) 648-24-08';
+
     setTimeout(() => {
-      btn.textContent = originalText;
+      btn.classList.remove('is-error');
+      btnText.textContent = originalText;
       btn.disabled = false;
     }, 6000);
   }
